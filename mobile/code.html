@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container": "#1a191b",
+                    "outline-variant": "#484849",
+                    "on-tertiary-fixed-variant": "#003d5a",
+                    "on-secondary-fixed": "#4f0089",
+                    "on-error": "#490013",
+                    "surface-container-low": "#131314",
+                    "on-surface-variant": "#adaaab",
+                    "error-container": "#a70138",
+                    "on-primary": "#0f00a4",
+                    "on-primary-container": "#0a0081",
+                    "on-surface": "#ffffff",
+                    "primary-fixed": "#9396ff",
+                    "on-secondary-fixed-variant": "#7511c3",
+                    "on-background": "#ffffff",
+                    "background": "#0e0e0f",
+                    "on-tertiary-fixed": "#001a29",
+                    "surface-bright": "#2c2c2d",
+                    "on-primary-fixed-variant": "#0e009d",
+                    "primary-dim": "#6063ee",
+                    "surface-container-lowest": "#000000",
+                    "primary": "#a3a6ff",
+                    "tertiary-fixed": "#40bbff",
+                    "primary-container": "#9396ff",
+                    "tertiary-container": "#34b5fa",
+                    "error": "#ff6e84",
+                    "secondary-container": "#6f00be",
+                    "surface-container-highest": "#262627",
+                    "surface-variant": "#262627",
+                    "surface-tint": "#a3a6ff",
+                    "on-primary-fixed": "#000000",
+                    "error-dim": "#d73357",
+                    "inverse-surface": "#fcf8f9",
+                    "surface": "#0e0e0f",
+                    "secondary": "#c180ff",
+                    "on-tertiary": "#003b56",
+                    "surface-container-high": "#201f21",
+                    "secondary-fixed": "#e5c6ff",
+                    "inverse-primary": "#494bd7",
+                    "primary-fixed-dim": "#8387ff",
+                    "secondary-fixed-dim": "#dbb4ff",
+                    "tertiary-dim": "#17a8ec",
+                    "on-tertiary-container": "#003047",
+                    "on-secondary": "#33005b",
+                    "tertiary-fixed-dim": "#25adf1",
+                    "on-error-container": "#ffb2b9",
+                    "outline": "#767576",
+                    "secondary-dim": "#9c48ea",
+                    "tertiary": "#61c2ff",
+                    "on-secondary-container": "#e9cdff",
+                    "inverse-on-surface": "#565556",
+                    "surface-dim": "#0e0e0f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(38, 38, 39, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#0e0e0f]/60 backdrop-blur-3xl border-b border-white/[0.08] shadow-2xl shadow-black/50 flex items-center justify-between px-6 h-20">
+<button class="text-[#a3a6ff] hover:bg-white/5 transition-colors active:scale-95 transition-transform duration-200 p-2 rounded-full">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-['Inter'] tracking-tight text-white text-lg font-bold uppercase tracking-widest">Поддержка</h1>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden border border-white/10">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Close-up portrait of a professional man with a friendly expression, studio lighting, dark background, premium aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD940q_rfW0z30FeqFam-qZ3ocICQa6lX8KKzDvBkreXnumBzEMMOcqWdxOKHoQX-fjYoO6bR-_A0fUHoDxVc47lPan38_AlEinBxKDTmjizwvsL6OTDGv-vz1wPEA6W8V741BsG4fCP7lBZoO3HyjroWWOVFkWoRyS7joik8h8CKF8zYjGjMvDrKgHteXq0f4D6hg-MbDErEoKYVrd7rF35OMhthL0Q9m2CZIpOPoGy-izKMIKpknc2l4KYARuipgu2UH4TK6DQCI"/>
+</div>
+</header>
+<main class="pt-28 px-6 space-y-8">
+<!-- Hero Search Section -->
+<section class="space-y-6">
+<div class="space-y-2">
+<h2 class="text-3xl font-black tracking-tight text-white leading-tight">Чем мы можем <br/><span class="text-primary">помочь?</span></h2>
+<p class="text-on-surface-variant text-sm font-medium">Поиск по базе знаний или обращение в чат</p>
+</div>
+<div class="relative group">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-primary">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="w-full bg-surface-container-high border-b border-outline-variant/30 focus:border-primary focus:ring-0 text-on-surface py-4 pl-12 pr-4 rounded-xl transition-all duration-300 glass-panel" placeholder="Поиск тем..." type="text"/>
+</div>
+</section>
+<!-- Categories Bento Grid -->
+<section class="grid grid-cols-2 gap-4">
+<div class="glass-panel p-5 rounded-3xl space-y-3 active:scale-95 transition-all border border-white/5">
+<div class="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">local_taxi</span>
+</div>
+<div>
+<h3 class="text-white font-bold">Поездки</h3>
+<p class="text-[11px] text-on-surface-variant mt-1">История, чеки, отзывы</p>
+</div>
+</div>
+<div class="glass-panel p-5 rounded-3xl space-y-3 active:scale-95 transition-all border border-white/5">
+<div class="w-10 h-10 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div>
+<h3 class="text-white font-bold">Оплата</h3>
+<p class="text-[11px] text-on-surface-variant mt-1">Карты, возвраты, бонусы</p>
+</div>
+</div>
+<div class="glass-panel p-5 rounded-3xl space-y-3 active:scale-95 transition-all border border-white/5">
+<div class="w-10 h-10 rounded-2xl bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<h3 class="text-white font-bold">Профиль</h3>
+<p class="text-[11px] text-on-surface-variant mt-1">Данные, настройки</p>
+</div>
+</div>
+<div class="glass-panel p-5 rounded-3xl space-y-3 active:scale-95 transition-all border border-white/5">
+<div class="w-10 h-10 rounded-2xl bg-error/10 flex items-center justify-center text-error">
+<span class="material-symbols-outlined">verified_user</span>
+</div>
+<div>
+<h3 class="text-white font-bold">Безопасность</h3>
+<p class="text-[11px] text-on-surface-variant mt-1">SOS, контакты, правила</p>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="space-y-4">
+<h3 class="text-white text-sm font-bold tracking-widest uppercase opacity-60 px-2">Популярные вопросы</h3>
+<div class="space-y-3">
+<!-- FAQ Item -->
+<div class="glass-panel rounded-2xl p-5 border border-white/5 flex items-center justify-between active:bg-white/5 transition-colors">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary-dim">help_outline</span>
+<span class="text-sm font-medium text-on-surface">Забыл вещь в машине</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+<!-- FAQ Item -->
+<div class="glass-panel rounded-2xl p-5 border border-white/5 flex items-center justify-between active:bg-white/5 transition-colors">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary-dim">help_outline</span>
+<span class="text-sm font-medium text-on-surface">Не согласен со стоимостью</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+<!-- FAQ Item -->
+<div class="glass-panel rounded-2xl p-5 border border-white/5 flex items-center justify-between active:bg-white/5 transition-colors">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary-dim">help_outline</span>
+<span class="text-sm font-medium text-on-surface">Как изменить способ оплаты?</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Decorative Card -->
+<section class="relative h-40 rounded-[32px] overflow-hidden group">
+<img alt="Almaty Night" class="absolute inset-0 w-full h-full object-cover grayscale opacity-50 group-hover:scale-110 transition-transform duration-700" data-alt="Cinematic night view of city skyscrapers with neon lights and motion blur of car tail lights in deep blue and purple tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOAlLOCzzu-sRbszzJ8JyfQffKmThSbvdwPFA4paXQWY7RyDQEfIRza7BgpHW2vmA3rY_MYrHnXDTmKcHtzYiPhPkuw_VokKOSkhcMwEAUC_3wWa8uyCVrG2ZZC1m1PNkZ01lu_C5ScCXSTXdN3i4oU8GfgVM09yFVRc1s4k8oVfIi5mAk6yXGrAu2l3ZyCTfy9Si_WeBGnr6FS9Jp4-jmmFSuuYMTUUASpKyFPylPNPtitn31XcMtumiuioq62bncN8qmEl-8z90"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
+<div class="relative h-full flex flex-col justify-end p-6">
+<span class="text-[10px] uppercase font-black tracking-[0.2em] text-primary mb-1">Служба заботы</span>
+<p class="text-white text-lg font-bold">Мы работаем 24/7 для вашего комфорта</p>
+</div>
+</section>
+</main>
+<!-- Chat FAB -->
+<button class="fixed bottom-32 right-6 w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center shadow-[0_20px_40px_rgba(163,166,255,0.3)] active:scale-90 transition-all duration-300 z-40">
+<span class="material-symbols-outlined text-on-primary-fixed text-3xl" style="font-variation-settings: 'FILL' 1;">chat</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-[24px] bg-[#0e0e0f]/80 backdrop-blur-2xl border-t border-white/[0.05] shadow-[0_-20px_40px_rgba(0,0,0,0.4)] flex justify-around items-center h-24 pb-6 px-4">
+<a class="flex flex-col items-center justify-center text-zinc-500 hover:text-zinc-300 active:scale-90 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">local_taxi</span>
+<span class="font-['Inter'] text-[10px] font-semibold tracking-wider uppercase mt-1">Заказать</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-500 hover:text-zinc-300 active:scale-90 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-['Inter'] text-[10px] font-semibold tracking-wider uppercase mt-1">Поездки</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#a3a6ff] bg-[#a3a6ff]/10 rounded-xl px-4 py-2 active:scale-90 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">support_agent</span>
+<span class="font-['Inter'] text-[10px] font-semibold tracking-wider uppercase mt-1">Помощь</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-500 hover:text-zinc-300 active:scale-90 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Inter'] text-[10px] font-semibold tracking-wider uppercase mt-1">Профиль</span>
+</a>
+</nav>
+</body></html>

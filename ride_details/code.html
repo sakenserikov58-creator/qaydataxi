@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#0e0e0f",
+                    "on-error-container": "#ffb2b9",
+                    "on-tertiary": "#003b56",
+                    "on-surface": "#ffffff",
+                    "on-primary-fixed": "#000000",
+                    "tertiary": "#61c2ff",
+                    "background": "#0e0e0f",
+                    "on-tertiary-container": "#003047",
+                    "tertiary-fixed-dim": "#25adf1",
+                    "primary": "#a3a6ff",
+                    "tertiary-fixed": "#40bbff",
+                    "surface-dim": "#0e0e0f",
+                    "on-surface-variant": "#adaaab",
+                    "primary-container": "#9396ff",
+                    "surface-variant": "#262627",
+                    "secondary-dim": "#9c48ea",
+                    "primary-fixed": "#9396ff",
+                    "on-primary-container": "#0a0081",
+                    "on-secondary-container": "#e9cdff",
+                    "tertiary-dim": "#17a8ec",
+                    "surface-container-low": "#131314",
+                    "on-tertiary-fixed-variant": "#003d5a",
+                    "on-secondary-fixed": "#4f0089",
+                    "outline": "#767576",
+                    "on-primary-fixed-variant": "#0e009d",
+                    "error": "#ff6e84",
+                    "primary-fixed-dim": "#8387ff",
+                    "secondary-fixed-dim": "#dbb4ff",
+                    "on-tertiary-fixed": "#001a29",
+                    "surface-container-high": "#201f21",
+                    "inverse-on-surface": "#565556",
+                    "primary-dim": "#6063ee",
+                    "on-primary": "#0f00a4",
+                    "inverse-primary": "#494bd7",
+                    "on-secondary": "#33005b",
+                    "surface-tint": "#a3a6ff",
+                    "on-background": "#ffffff",
+                    "secondary-container": "#6f00be",
+                    "on-secondary-fixed-variant": "#7511c3",
+                    "outline-variant": "#484849",
+                    "error-dim": "#d73357",
+                    "secondary-fixed": "#e5c6ff",
+                    "secondary": "#c180ff",
+                    "surface-container-highest": "#262627",
+                    "surface-container-lowest": "#000000",
+                    "on-error": "#490013",
+                    "error-container": "#a70138",
+                    "surface-bright": "#2c2c2d",
+                    "tertiary-container": "#34b5fa",
+                    "surface-container": "#1a191b",
+                    "inverse-surface": "#fcf8f9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "1rem",
+                    "3xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(38, 38, 39, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#0e0e0f]/60 backdrop-blur-2xl border-b border-white/5 shadow-[0_20px_40px_rgba(0,0,0,0.4)] flex items-center justify-between px-6 h-16 font-['Inter'] tracking-tight antialiased">
+<div class="flex items-center gap-4">
+<button class="active:scale-95 transition-transform duration-200 hover:bg-white/10 p-2 rounded-full">
+<span class="material-symbols-outlined text-white">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold tracking-tighter text-white">Детали поездки</h1>
+</div>
+<div class="flex items-center">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center border border-white/10">
+<span class="material-symbols-outlined text-[#a3a6ff]" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-12 px-4 max-w-2xl mx-auto space-y-6">
+<!-- Date and Route Visualizer -->
+<section class="glass-card rounded-3xl p-6 border border-white/5">
+<div class="flex justify-between items-start mb-6">
+<div>
+<p class="text-on-surface-variant text-sm font-medium tracking-wide uppercase">14 Октября, 21:45</p>
+<h2 class="text-2xl font-bold mt-1">Завершена</h2>
+</div>
+<div class="bg-primary/20 px-4 py-1 rounded-full border border-primary/20">
+<span class="text-primary text-xs font-bold uppercase tracking-tighter">Business</span>
+</div>
+</div>
+<!-- Route Timeline -->
+<div class="relative space-y-8 before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-gradient-to-b before:from-primary before:to-secondary">
+<div class="flex items-start gap-6 relative">
+<div class="z-10 w-[24px] h-[24px] rounded-full bg-background border-4 border-primary flex items-center justify-center"></div>
+<div>
+<p class="text-xs text-on-surface-variant font-medium">Откуда</p>
+<p class="text-lg font-semibold">ул. Абылай Хана, 79</p>
+</div>
+</div>
+<div class="flex items-start gap-6 relative">
+<div class="z-10 w-[24px] h-[24px] rounded-full bg-background border-4 border-secondary flex items-center justify-center"></div>
+<div>
+<p class="text-xs text-on-surface-variant font-medium">Куда</p>
+<p class="text-lg font-semibold">ТРЦ Dostyk Plaza</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Map Section -->
+<section class="relative h-64 rounded-3xl overflow-hidden border border-white/5 shadow-2xl">
+<div class="absolute inset-0 bg-surface-container-low flex items-center justify-center overflow-hidden">
+<img alt="Map view Almaty" class="w-full h-full object-cover opacity-60" data-alt="Dark stylized night map of Almaty city with a glowing neon purple and blue route line connecting two points" data-location="Almaty" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB5B1qbvewa111P7BwCkEzLx4VVIOVcVtE0xrYPMdgaM3DBM_j1LLpSJU8j_zVCQfFjF-rDzlAwJFZkJf_kBR7L8bBCaLGpqrTY4t9HxYUOhnXDagSB-SFsJNzWBh3NtHvAylK9LnBC87HUGPo4j-t260wWd45vyIdstouAUuntP7Qpff6HPkEugLMIlH0K3XpmaharLsot3cYdxaGoDIZdQakB2H62ndkuP0YmyD2-rayMiJkcM25_NRe-cc0h_jfptv2pvPVvXs"/>
+</div>
+<!-- Floating Map Details -->
+<div class="absolute bottom-4 left-4 right-4 flex justify-between items-center bg-black/40 backdrop-blur-md p-4 rounded-2xl border border-white/10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary">route</span>
+<span class="text-sm font-medium">8.4 км • 18 мин</span>
+</div>
+<button class="text-primary text-sm font-bold">Смотреть весь путь</button>
+</div>
+</section>
+<!-- Bento Grid: Car & Driver -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Car Card -->
+<div class="glass-card rounded-3xl p-6 border border-white/5 flex flex-col justify-between min-h-[160px]">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-primary-container text-4xl">directions_car</span>
+<p class="bg-surface-container-highest px-3 py-1 rounded-lg text-sm font-mono tracking-widest text-white border border-white/10">777 AAA 02</p>
+</div>
+<div>
+<h3 class="text-xl font-bold text-white">BMW 5-Series</h3>
+<p class="text-on-surface-variant text-sm">Черный обсидиан</p>
+</div>
+</div>
+<!-- Payment Card -->
+<div class="glass-card rounded-3xl p-6 border border-white/5 flex flex-col justify-between min-h-[160px]">
+<div class="flex justify-between items-start">
+<div class="bg-[#f24747] w-12 h-12 rounded-xl flex items-center justify-center font-black text-white italic text-xl shadow-lg">K</div>
+<span class="material-symbols-outlined text-on-surface-variant">verified_user</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-white">Kaspi.kz</h3>
+<p class="text-on-surface-variant text-sm">Способ оплаты</p>
+</div>
+</div>
+</section>
+<!-- Price Breakdown -->
+<section class="glass-card rounded-3xl p-8 border border-white/5 relative overflow-hidden">
+<!-- Decorative Glow -->
+<div class="absolute -right-20 -bottom-20 w-64 h-64 bg-primary/10 rounded-full blur-[80px]"></div>
+<h3 class="text-lg font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">receipt_long</span>
+                Детализация счета
+            </h3>
+<div class="space-y-4 relative z-10">
+<div class="flex justify-between items-center text-on-surface-variant">
+<span class="font-medium">Стоимость</span>
+<span class="font-semibold text-on-surface">2 850 ₸</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant font-medium">Скидка</span>
+<span class="text-error font-bold">-300 ₸</span>
+</div>
+<!-- Divider Substitute (Spacing & Tone) -->
+<div class="h-px bg-white/10 my-6"></div>
+<div class="flex justify-between items-end">
+<div>
+<p class="text-xs text-on-surface-variant uppercase tracking-widest font-bold">Итого</p>
+<p class="text-4xl font-black text-white tracking-tighter">2 550 ₸</p>
+</div>
+<div class="flex items-center gap-2 bg-on-surface/5 px-4 py-2 rounded-2xl border border-white/5">
+<span class="material-symbols-outlined text-tertiary-fixed-dim" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold">4.9</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Action -->
+<div class="pt-4 flex flex-col gap-3">
+<button class="w-full bg-gradient-to-r from-primary to-secondary text-on-primary-fixed font-bold py-5 rounded-full text-lg shadow-[0_10px_30px_rgba(163,166,255,0.3)] active:scale-[0.98] transition-all duration-200">
+                Повторить поездку
+            </button>
+<button class="w-full glass-card border border-white/10 text-white font-semibold py-4 rounded-full active:scale-[0.98] transition-all duration-200">
+                Нужна помощь?
+            </button>
+</div>
+</main>
+<!-- Suppressed navigation shell as this is a detail/focused journey page as per the Destination Rule -->
+</body></html>

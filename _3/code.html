@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Эфир Диспетчер - Данные сотрудника</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-dim": "#17a8ec",
+                        "inverse-surface": "#fcf8f9",
+                        "on-secondary-fixed-variant": "#7511c3",
+                        "outline": "#767576",
+                        "secondary-fixed-dim": "#dbb4ff",
+                        "primary-fixed-dim": "#8387ff",
+                        "on-secondary-fixed": "#4f0089",
+                        "surface": "#0e0e0f",
+                        "surface-variant": "#262627",
+                        "primary": "#a3a6ff",
+                        "outline-variant": "#484849",
+                        "inverse-on-surface": "#565556",
+                        "on-tertiary-fixed": "#001a29",
+                        "on-tertiary": "#003b56",
+                        "surface-dim": "#0e0e0f",
+                        "surface-container-low": "#131314",
+                        "on-primary-container": "#0a0081",
+                        "surface-container-high": "#201f21",
+                        "secondary": "#c180ff",
+                        "on-tertiary-container": "#003047",
+                        "inverse-primary": "#494bd7",
+                        "primary-container": "#9396ff",
+                        "tertiary-fixed": "#40bbff",
+                        "secondary-container": "#6f00be",
+                        "on-tertiary-fixed-variant": "#003d5a",
+                        "on-background": "#ffffff",
+                        "surface-container-highest": "#262627",
+                        "background": "#0e0e0f",
+                        "on-primary": "#0f00a4",
+                        "surface-tint": "#a3a6ff",
+                        "error-dim": "#d73357",
+                        "on-surface": "#ffffff",
+                        "on-primary-fixed": "#000000",
+                        "on-surface-variant": "#adaaab",
+                        "on-primary-fixed-variant": "#0e009d",
+                        "on-error-container": "#ffb2b9",
+                        "primary-fixed": "#9396ff",
+                        "surface-bright": "#2c2c2d",
+                        "on-secondary-container": "#e9cdff",
+                        "error-container": "#a70138",
+                        "secondary-fixed": "#e5c6ff",
+                        "tertiary-container": "#34b5fa",
+                        "primary-dim": "#6063ee",
+                        "surface-container": "#1a191b",
+                        "surface-container-lowest": "#000000",
+                        "tertiary-fixed-dim": "#25adf1",
+                        "tertiary": "#61c2ff",
+                        "error": "#ff6e84",
+                        "on-secondary": "#33005b",
+                        "secondary-dim": "#9c48ea",
+                        "on-error": "#490013"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(38, 38, 39, 0.4);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+        }
+        .sidebar-gradient {
+            background: linear-gradient(to right, rgba(163, 166, 255, 0.1), rgba(193, 128, 255, 0.05));
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary selection:text-on-primary">
+<!-- SideNavBar (Authority Source: JSON) -->
+<nav class="h-screen w-64 fixed left-0 top-0 flex flex-col bg-[#0e0e0f] z-40 hidden md:flex">
+<div class="flex flex-col h-full py-6">
+<div class="px-6 mb-8 flex items-center space-x-3">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-fixed" style="font-variation-settings: 'FILL' 1;">location_city</span>
+</div>
+<div>
+<h2 class="text-lg font-black text-white leading-tight">Алматы</h2>
+<p class="text-xs text-on-surface-variant font-medium">Ночная смена</p>
+</div>
+</div>
+<div class="flex-1 px-4 space-y-2">
+<a class="flex items-center px-4 py-3 rounded-xl text-gray-500 hover:text-gray-300 hover:bg-[#ffffff]/5 transition-colors font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+                    Мониторинг
+                </a>
+<!-- ACTIVE TAB: Водители (Intent-based mapping for Driver Profile) -->
+<a class="flex items-center px-4 py-3 rounded-xl bg-gradient-to-r from-[#a3a6ff]/20 to-[#c180ff]/10 text-white border-r-4 border-[#a3a6ff] font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined mr-3" style="font-variation-settings: 'FILL' 1;">steering_wheel_heat</span>
+                    Водители
+                </a>
+<a class="flex items-center px-4 py-3 rounded-xl text-gray-500 hover:text-gray-300 hover:bg-[#ffffff]/5 transition-colors font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined mr-3">local_taxi</span>
+                    Заказы
+                </a>
+<a class="flex items-center px-4 py-3 rounded-xl text-gray-500 hover:text-gray-300 hover:bg-[#ffffff]/5 transition-colors font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined mr-3">analytics</span>
+                    Отчеты
+                </a>
+<a class="flex items-center px-4 py-3 rounded-xl text-gray-500 hover:text-gray-300 hover:bg-[#ffffff]/5 transition-colors font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined mr-3">payments</span>
+                    Тарифы
+                </a>
+</div>
+<div class="px-4 mt-auto space-y-2">
+<button class="w-full py-3 mb-4 rounded-full bg-gradient-to-r from-primary to-secondary text-on-primary-fixed font-bold text-sm flex items-center justify-center gap-2 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm">add</span>
+                    Новый заказ
+                </button>
+<a class="flex items-center px-4 py-3 rounded-xl text-gray-500 hover:text-gray-300 hover:bg-[#ffffff]/5 transition-colors font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined mr-3">help</span>
+                    Поддержка
+                </a>
+<a class="flex items-center px-4 py-3 rounded-xl text-gray-500 hover:text-gray-300 hover:bg-[#ffffff]/5 transition-colors font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined mr-3">logout</span>
+                    Выход
+                </a>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 min-h-screen">
+<!-- TopNavBar (Authority Source: JSON) -->
+<header class="flex justify-between items-center w-full px-6 h-16 fixed top-0 z-30 bg-[#0e0e0f]/60 backdrop-blur-xl shadow-[0_20px_40px_rgba(0,0,0,0.4)] md:w-[calc(100%-16rem)]">
+<div class="flex items-center space-x-6">
+<h1 class="text-xl font-bold bg-gradient-to-r from-[#a3a6ff] to-[#c180ff] bg-clip-text text-transparent font-['Inter'] tracking-tight">Эфир Диспетчер</h1>
+<div class="hidden lg:flex items-center bg-surface-container-low px-4 py-1.5 rounded-full border border-outline-variant/15">
+<span class="material-symbols-outlined text-sm text-primary mr-2" style="font-variation-settings: 'FILL' 1;">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48 text-on-surface" placeholder="Поиск водителя или авто..." type="text"/>
+</div>
+</div>
+<div class="flex items-center space-x-4">
+<div class="flex space-x-2 items-center mr-4">
+<span class="flex items-center px-3 py-1 bg-primary/10 text-[#a3a6ff] rounded-full text-xs font-bold border border-primary/20">
+                        Онлайн
+                    </span>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+                        Карта
+                    </button>
+</div>
+<div class="flex space-x-2">
+<button class="p-2 rounded-full hover:bg-[#ffffff]/10 transition-all text-on-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-[#ffffff]/10 transition-all text-on-surface-variant">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<img alt="Профиль диспетчера" class="w-8 h-8 rounded-full border border-outline-variant/30" data-alt="close-up portrait of a professional woman in her 30s with a confident expression, soft studio lighting, high-end photography style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-oJ7Qa17oJN1NLdLf-Kqic2nYINp3irPROMY44VrTlpLF7W_MBJAhfze-EYZ8YHY0NbIlFIesaqpUQbvI9aLCnh0JQ8hk5Mda9SIV27Mzjr0TA_CmrJ_lFj14qatEkm23IoFoixLr8F5rSBVXXOpGd32DAdhG6xsvBo2kC2FkZVQu-GA9i9QOOpxuvaeSoV3Pd4nvHJ1v-m6TGcI7Osq7V3obY4YZr6NZa_7ShJVzb7DxyD_Hq4FU-KYXfgssq_DWRe7NrJmcTBY"/>
+</div>
+</header>
+<!-- Scrollable Canvas -->
+<div class="pt-24 pb-12 px-6 md:px-10 max-w-7xl mx-auto">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-10">
+<div class="flex items-center gap-6">
+<div class="relative">
+<img alt="Водитель" class="w-32 h-32 rounded-3xl object-cover ring-4 ring-primary/20" data-alt="portrait of a middle-aged man with a friendly smile, wearing a clean polo shirt, sitting in a modern car interior, soft cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOdBfy90EWQeNzi7WFVgLKI_z6YSqpLVqPZsTLMTpLlum9c-txnNQzQimLvHE-z0CZBpIYtcuqgpGunkvYCasJh0Q0UYdPDqL6-sNSRc8utTo3OgPDKL1575cV1ymspYC_zIhSPpn-QEC3fQByAAv81D3v2pt3vEdLkg_WT6CfXs15ZyYGSrz-S5LjU6r9NUbKUDqUaQykoz-uyfmw9ZyTkUrIhgrOtdpXFu5dRPoHQgzmoYohp4qmKWqARbaxPbcsF-kubz0J1og"/>
+<div class="absolute -bottom-2 -right-2 bg-primary text-on-primary-fixed text-[10px] font-black px-2 py-1 rounded-lg uppercase">Elite</div>
+</div>
+<div>
+<h2 class="text-4xl font-extrabold tracking-tighter text-white mb-1">Арман Нуртас</h2>
+<div class="flex flex-wrap gap-3 items-center">
+<span class="text-on-surface-variant text-sm font-medium">ID: 8829-KZ</span>
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+<span class="flex items-center text-secondary font-bold text-sm">
+<span class="material-symbols-outlined text-sm mr-1" style="font-variation-settings: 'FILL' 1;">star</span>
+                                4.98
+                            </span>
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+<span class="text-primary text-sm font-semibold">Tesla Model 3 • 777 ABC 02</span>
+</div>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-2.5 rounded-full bg-surface-container-highest border border-outline-variant/30 text-on-surface text-sm font-bold flex items-center gap-2 hover:bg-surface-bright transition-all active:scale-95">
+<span class="material-symbols-outlined text-lg">chat</span> Сообщение
+                    </button>
+<button class="px-6 py-2.5 rounded-full bg-gradient-to-r from-primary to-secondary text-on-primary-fixed text-sm font-bold flex items-center gap-2 hover:opacity-90 transition-all active:scale-95">
+<span class="material-symbols-outlined text-lg">call</span> Позвонить
+                    </button>
+<button class="p-2.5 rounded-full bg-error-container/20 border border-error/30 text-error flex items-center justify-center hover:bg-error-container/40 transition-all">
+<span class="material-symbols-outlined">block</span>
+</button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Stats Row (Financials & Status) -->
+<div class="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Finance Card -->
+<div class="glass-panel p-6 rounded-3xl border border-outline-variant/10">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-lg font-bold">Финансы</h3>
+<span class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Сегодня</span>
+</div>
+<div class="flex items-end justify-between">
+<div>
+<p class="text-3xl font-black text-white">42 500 ₸</p>
+<p class="text-xs text-primary font-bold mt-1">+12% к прошлой смене</p>
+</div>
+<div class="flex items-end space-x-1 h-12">
+<div class="w-2 bg-primary/20 rounded-t-sm h-4"></div>
+<div class="w-2 bg-primary/20 rounded-t-sm h-6"></div>
+<div class="w-2 bg-primary/20 rounded-t-sm h-3"></div>
+<div class="w-2 bg-primary/40 rounded-t-sm h-8"></div>
+<div class="w-2 bg-primary rounded-t-sm h-12"></div>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t border-outline-variant/10 grid grid-cols-2 gap-4">
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold">Баланс</p>
+<p class="text-lg font-bold text-on-surface">158 900 ₸</p>
+</div>
+<div>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold">Комиссия</p>
+<p class="text-lg font-bold text-on-surface">6 375 ₸</p>
+</div>
+</div>
+</div>
+<!-- Documents Card -->
+<div class="glass-panel p-6 rounded-3xl border border-outline-variant/10">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-lg font-bold">Документы</h3>
+<span class="material-symbols-outlined text-primary">verified</span>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">badge</span>
+</div>
+<p class="text-sm font-medium">Водительское уд.</p>
+</div>
+<span class="w-2 h-2 rounded-full bg-tertiary-dim shadow-[0_0_8px_#17a8ec]"></span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">description</span>
+</div>
+<p class="text-sm font-medium">Техпаспорт (СРТС)</p>
+</div>
+<span class="w-2 h-2 rounded-full bg-tertiary-dim shadow-[0_0_8px_#17a8ec]"></span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">policy</span>
+</div>
+<p class="text-sm font-medium">Страховой полис</p>
+</div>
+<span class="flex items-center text-[10px] font-black text-error bg-error/10 px-2 py-0.5 rounded-full uppercase">Срок истёк</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Control/Map Sidebar -->
+<div class="lg:row-span-2">
+<div class="glass-panel rounded-3xl border border-outline-variant/10 overflow-hidden h-full flex flex-col">
+<div class="h-48 relative">
+<div class="absolute inset-0 bg-surface-container-low" data-location="Almaty" style="">
+<!-- Map placeholder with abstract gradient -->
+<div class="w-full h-full bg-gradient-to-br from-surface to-surface-container-high relative overflow-hidden">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+<div class="w-12 h-12 bg-primary/20 rounded-full animate-ping absolute inset-0"></div>
+<div class="w-12 h-12 bg-primary/40 rounded-full flex items-center justify-center relative border border-primary/50">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">local_taxi</span>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute top-4 left-4">
+<span class="px-3 py-1 bg-surface/80 backdrop-blur-md rounded-lg text-[10px] font-bold text-white uppercase border border-outline-variant/20">пр. Аль-Фараби</span>
+</div>
+</div>
+<div class="p-6 flex-1">
+<h3 class="text-lg font-bold mb-4">Управление аккаунтом</h3>
+<div class="space-y-3">
+<button class="w-full text-left p-4 rounded-2xl bg-surface-container-low border border-outline-variant/10 flex items-center justify-between group hover:border-primary/30 transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">history</span>
+<span class="text-sm font-medium">Лог действий</span>
+</div>
+<span class="material-symbols-outlined text-sm text-on-surface-variant">chevron_right</span>
+</button>
+<button class="w-full text-left p-4 rounded-2xl bg-surface-container-low border border-outline-variant/10 flex items-center justify-between group hover:border-primary/30 transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">edit_square</span>
+<span class="text-sm font-medium">Редактировать данные</span>
+</div>
+<span class="material-symbols-outlined text-sm text-on-surface-variant">chevron_right</span>
+</button>
+<button class="w-full text-left p-4 rounded-2xl bg-surface-container-low border border-outline-variant/10 flex items-center justify-between group hover:border-primary/30 transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">account_balance_wallet</span>
+<span class="text-sm font-medium">Выплаты и бонусы</span>
+</div>
+<span class="material-symbols-outlined text-sm text-on-surface-variant">chevron_right</span>
+</button>
+</div>
+<div class="mt-8 p-4 rounded-2xl bg-primary/5 border border-primary/10">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-sm">info</span>
+<p class="text-xs font-bold text-primary uppercase">Заметка диспетчера</p>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed italic">
+                                    "Отличный водитель, предпочитает работать в ночные смены. Всегда чистый салон и вежливое общение."
+                                </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Trip History Table -->
+<div class="lg:col-span-2">
+<div class="glass-panel rounded-3xl border border-outline-variant/10 overflow-hidden">
+<div class="p-6 border-b border-outline-variant/10 flex justify-between items-center">
+<h3 class="text-lg font-bold">История поездок</h3>
+<div class="flex gap-2">
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-bright transition-colors">
+<span class="material-symbols-outlined text-sm">tune</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-bright transition-colors">
+<span class="material-symbols-outlined text-sm">download</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-[10px] font-black text-on-surface-variant uppercase tracking-widest bg-surface-container/50">
+<th class="px-6 py-4">Маршрут</th>
+<th class="px-6 py-4">Дата / Время</th>
+<th class="px-6 py-4">Тариф</th>
+<th class="px-6 py-4">Статус</th>
+<th class="px-6 py-4 text-right">Стоимость</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<tr class="hover:bg-[#ffffff]/5 transition-colors">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-white">Mega Center</span>
+<span class="text-xs text-on-surface-variant">→ Аэропорт Алматы</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm text-on-surface">Сегодня</span>
+<span class="text-xs text-on-surface-variant">21:34 - 22:15</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-2 py-0.5 rounded bg-secondary/10 text-secondary text-[10px] font-black uppercase">Elite</span>
+</td>
+<td class="px-6 py-5">
+<span class="flex items-center gap-1.5 text-xs font-bold text-tertiary">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Выполнено
+                                            </span>
+</td>
+<td class="px-6 py-5 text-right font-black text-white text-sm">5 800 ₸</td>
+</tr>
+<tr class="hover:bg-[#ffffff]/5 transition-colors">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-white">БЦ Нурлы Тау</span>
+<span class="text-xs text-on-surface-variant">→ ул. Панфилова</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm text-on-surface">Сегодня</span>
+<span class="text-xs text-on-surface-variant">20:15 - 20:45</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-2 py-0.5 rounded bg-primary/10 text-primary text-[10px] font-black uppercase">Comfort+</span>
+</td>
+<td class="px-6 py-5">
+<span class="flex items-center gap-1.5 text-xs font-bold text-tertiary">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Выполнено
+                                            </span>
+</td>
+<td class="px-6 py-5 text-right font-black text-white text-sm">3 400 ₸</td>
+</tr>
+<tr class="hover:bg-[#ffffff]/5 transition-colors">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-white">Esentai Mall</span>
+<span class="text-xs text-on-surface-variant">→ Dostyk Plaza</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm text-on-surface">Сегодня</span>
+<span class="text-xs text-on-surface-variant">19:30 - 19:45</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-2 py-0.5 rounded bg-secondary/10 text-secondary text-[10px] font-black uppercase">Elite</span>
+</td>
+<td class="px-6 py-5">
+<span class="flex items-center gap-1.5 text-xs font-bold text-error">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> Отмена
+                                            </span>
+</td>
+<td class="px-6 py-5 text-right font-black text-on-surface-variant text-sm">0 ₸</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Authority Source: JSON - Mobile Only) -->
+<nav class="fixed bottom-0 left-0 right-0 h-16 bg-[#0e0e0f]/80 backdrop-blur-xl md:hidden z-50 flex items-center justify-around px-4">
+<button class="flex flex-col items-center gap-1 text-gray-400">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-medium">Главная</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-[#a3a6ff]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">steering_wheel_heat</span>
+<span class="text-[10px] font-medium">Водители</span>
+</button>
+<button class="w-12 h-12 -mt-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-on-primary-fixed shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-400">
+<span class="material-symbols-outlined">local_taxi</span>
+<span class="text-[10px] font-medium">Заказы</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-400">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-[10px] font-medium">Отчеты</span>
+</button>
+</nav>
+</body></html>

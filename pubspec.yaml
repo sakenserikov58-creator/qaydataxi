@@ -1,0 +1,68 @@
+name: qayda_taxi_app
+description: "Qayda — Premium Taxi App for Almaty. Light Mode."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # Navigation
+  go_router: ^14.3.0
+  # Fonts
+  google_fonts: ^6.1.0
+  # Global state (GoRouter refresh)
+  provider: ^6.1.2
+  # Screen-level state management
+  flutter_bloc: ^8.1.6
+  bloc: ^8.1.4
+  # Value equality for BLoC states/events
+  equatable: ^2.0.5
+  # Role & session persistence
+  shared_preferences: ^2.3.1
+  # Real interactive map (OpenStreetMap - free, no API key)
+  flutter_map: ^7.0.2
+  latlong2: ^0.9.1
+  # GPS/Location permissions
+  geolocator: ^13.0.2
+  # Локализация (ru / kk)
+  easy_localization: ^3.0.7
+  # Локальные push-уведомления
+  flutter_local_notifications: ^18.0.1
+  # Мониторинг подключения к интернету
+  connectivity_plus: ^6.1.1
+  # Воспроизведение звуков (new_order.mp3 для водителя)
+  audioplayers: ^6.1.0
+  animate_do: ^5.1.0
+  shimmer: ^3.0.0
+  mask_text_input_formatter: ^2.9.0
+  # Ссылки и телефонные звонки
+  url_launcher: ^6.3.0
+  # Firebase
+  firebase_core: ^3.1.0
+  cloud_firestore: ^5.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.14.1
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/translations/
+    - assets/sounds/
+    - assets/images/
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/app_icon.png"
+  min_sdk_android: 21
+  web:
+    generate: false
+  windows:
+    generate: false

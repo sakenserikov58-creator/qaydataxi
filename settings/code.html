@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#0e0e0f",
+                        "on-error-container": "#ffb2b9",
+                        "on-tertiary": "#003b56",
+                        "on-surface": "#ffffff",
+                        "on-primary-fixed": "#000000",
+                        "tertiary": "#61c2ff",
+                        "background": "#0e0e0f",
+                        "on-tertiary-container": "#003047",
+                        "tertiary-fixed-dim": "#25adf1",
+                        "primary": "#a3a6ff",
+                        "tertiary-fixed": "#40bbff",
+                        "surface-dim": "#0e0e0f",
+                        "on-surface-variant": "#adaaab",
+                        "primary-container": "#9396ff",
+                        "surface-variant": "#262627",
+                        "secondary-dim": "#9c48ea",
+                        "primary-fixed": "#9396ff",
+                        "on-primary-container": "#0a0081",
+                        "on-secondary-container": "#e9cdff",
+                        "tertiary-dim": "#17a8ec",
+                        "surface-container-low": "#131314",
+                        "on-tertiary-fixed-variant": "#003d5a",
+                        "on-secondary-fixed": "#4f0089",
+                        "outline": "#767576",
+                        "on-primary-fixed-variant": "#0e009d",
+                        "error": "#ff6e84",
+                        "primary-fixed-dim": "#8387ff",
+                        "secondary-fixed-dim": "#dbb4ff",
+                        "on-tertiary-fixed": "#001a29",
+                        "surface-container-high": "#201f21",
+                        "inverse-on-surface": "#565556",
+                        "primary-dim": "#6063ee",
+                        "on-primary": "#0f00a4",
+                        "inverse-primary": "#494bd7",
+                        "on-secondary": "#33005b",
+                        "surface-tint": "#a3a6ff",
+                        "on-background": "#ffffff",
+                        "secondary-container": "#6f00be",
+                        "on-secondary-fixed-variant": "#7511c3",
+                        "outline-variant": "#484849",
+                        "error-dim": "#d73357",
+                        "secondary-fixed": "#e5c6ff",
+                        "secondary": "#c180ff",
+                        "surface-container-highest": "#262627",
+                        "surface-container-lowest": "#000000",
+                        "on-error": "#490013",
+                        "error-container": "#a70138",
+                        "surface-bright": "#2c2c2d",
+                        "tertiary-container": "#34b5fa",
+                        "surface-container": "#1a191b",
+                        "inverse-surface": "#fcf8f9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(38, 38, 39, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #a3a6ff;
+        }
+        .toggle-checkbox:checked + .toggle-label .toggle-dot {
+            transform: translateX(100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary selection:text-on-primary-fixed min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#0e0e0f]/60 backdrop-blur-2xl border-b border-white/5 shadow-[0_20px_40px_rgba(0,0,0,0.4)] flex items-center justify-between px-6 h-16">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-[#a3a6ff] hover:bg-white/10 p-2 rounded-full transition-colors active:scale-95" data-icon="menu">menu</button>
+<span class="text-xl font-bold tracking-tighter text-white font-headline">Ether</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 rounded-full border border-white/10 overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Close-up portrait of a stylish man with a short beard against a dark urban background, moody lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCodVNT4NzSV1vqxcjm8VfdzvNTtrAD9EdnvFu2mzY4nddl6FVx6Xqw_cFhgrzh0Gqr-NiuPRA2duxfWYRqNCVvH0LBYcZfQXaXmQU4FGy5k4gUxX3I6l9ukWLW6XyFeXWhoaO2B8kHC9wAmf3XqFQdgOo9q50AYYjM63jlnhDHwYSpu8abwRWcUELrzY2NpQLPu4mASEMNQhL4AMYl3sgb0uT2xn-eEW2VxWBMlRWZdKrA2-IdT6UfNsyuuo_oQbFFUDUfudp7tlE"/>
+</div>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-2xl mx-auto">
+<!-- Editorial Header -->
+<div class="mb-10">
+<h1 class="text-4xl font-black tracking-tighter mb-2 text-white">Настройки</h1>
+<p class="text-on-surface-variant text-sm font-medium tracking-wide">Управляйте вашим аккаунтом и предпочтениями</p>
+</div>
+<!-- Section: Личные данные -->
+<section class="mb-8">
+<h2 class="text-xs font-bold uppercase tracking-[0.2em] text-[#a3a6ff] mb-4 px-2">Личные данные</h2>
+<div class="glass-card rounded-3xl overflow-hidden shadow-2xl">
+<!-- Item 1 -->
+<div class="flex items-center justify-between p-5 hover:bg-white/5 transition-colors cursor-pointer group">
+<div class="flex flex-col">
+<span class="text-on-surface-variant text-[10px] uppercase tracking-widest font-bold mb-1">Имя</span>
+<span class="text-on-surface font-semibold">Александр Белов</span>
+</div>
+<span class="material-symbols-outlined text-zinc-600 group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center justify-between p-5 hover:bg-white/5 transition-colors border-t border-white/5 cursor-pointer group">
+<div class="flex flex-col">
+<span class="text-on-surface-variant text-[10px] uppercase tracking-widest font-bold mb-1">Почта</span>
+<span class="text-on-surface font-semibold">a.belov@ether.app</span>
+</div>
+<span class="material-symbols-outlined text-zinc-600 group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Item 3 -->
+<div class="flex items-center justify-between p-5 hover:bg-white/5 transition-colors border-t border-white/5 cursor-pointer group">
+<div class="flex flex-col">
+<span class="text-on-surface-variant text-[10px] uppercase tracking-widest font-bold mb-1">Телефон</span>
+<span class="text-on-surface font-semibold">+7 707 123 45 67</span>
+</div>
+<span class="material-symbols-outlined text-zinc-600 group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Section: Безопасность и Язык -->
+<section class="mb-8">
+<h2 class="text-xs font-bold uppercase tracking-[0.2em] text-[#a3a6ff] mb-4 px-2">Конфиденциальность</h2>
+<div class="glass-card rounded-3xl overflow-hidden shadow-2xl">
+<div class="flex items-center justify-between p-5 hover:bg-white/5 transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+</div>
+<span class="text-on-surface font-semibold">Безопасность</span>
+</div>
+<span class="material-symbols-outlined text-zinc-600 group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+<div class="flex items-center justify-between p-5 hover:bg-white/5 transition-colors border-t border-white/5 cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-2xl bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="language">language</span>
+</div>
+<div class="flex flex-col">
+<span class="text-on-surface font-semibold">Язык приложения</span>
+<span class="text-on-surface-variant text-xs">Русский</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-zinc-600 group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Section: Уведомления -->
+<section class="mb-8">
+<h2 class="text-xs font-bold uppercase tracking-[0.2em] text-[#a3a6ff] mb-4 px-2">Уведомления</h2>
+<div class="glass-card rounded-3xl overflow-hidden shadow-2xl">
+<div class="flex items-center justify-between p-5 border-white/5">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</div>
+<div class="flex flex-col">
+<span class="text-on-surface font-semibold">Push-уведомления</span>
+<span class="text-on-surface-variant text-xs">Статус поездки и акции</span>
+</div>
+</div>
+<div class="relative inline-block w-12 h-6 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 border-transparent appearance-none cursor-pointer z-10 transition-transform duration-300 translate-x-6" id="toggle1" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-zinc-700 cursor-pointer transition-colors duration-300" for="toggle1"></label>
+</div>
+</div>
+<div class="flex items-center justify-between p-5 border-t border-white/5">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-2xl bg-error/10 flex items-center justify-center text-error">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+</div>
+<div class="flex flex-col">
+<span class="text-on-surface font-semibold">Email рассылки</span>
+<span class="text-on-surface-variant text-xs">Новости и чеки</span>
+</div>
+</div>
+<div class="relative inline-block w-12 h-6 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 border-transparent appearance-none cursor-pointer z-10 transition-transform duration-300" id="toggle2" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-zinc-700 cursor-pointer transition-colors duration-300" for="toggle2"></label>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: О приложении -->
+<section class="mb-12">
+<div class="glass-card rounded-3xl overflow-hidden shadow-2xl">
+<div class="flex items-center justify-between p-5 hover:bg-white/5 transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-2xl bg-white/5 flex items-center justify-center text-zinc-400">
+<span class="material-symbols-outlined" data-icon="info">info</span>
+</div>
+<span class="text-on-surface font-semibold">О приложении</span>
+</div>
+<span class="text-on-surface-variant text-xs font-bold mr-2">v 2.4.1</span>
+</div>
+</div>
+</section>
+<!-- Danger Zone -->
+<button class="w-full py-4 rounded-2xl border border-error/20 text-error font-bold flex items-center justify-center gap-2 active:scale-[0.98] transition-transform hover:bg-error/5 mb-8">
+<span class="material-symbols-outlined text-xl" data-icon="logout">logout</span>
+            Выйти из аккаунта
+        </button>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 bg-[#0e0e0f]/80 backdrop-blur-3xl border-t border-white/10 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] flex justify-around items-center h-24 pb-6 px-4 rounded-t-[32px]">
+<!-- Dest 1 -->
+<div class="flex flex-col items-center justify-center text-zinc-600 hover:text-zinc-300 transition-all cursor-pointer active:scale-90">
+<span class="material-symbols-outlined mb-1" data-icon="local_taxi">local_taxi</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-widest">Поездка</span>
+</div>
+<!-- Dest 2 -->
+<div class="flex flex-col items-center justify-center text-zinc-600 hover:text-zinc-300 transition-all cursor-pointer active:scale-90">
+<span class="material-symbols-outlined mb-1" data-icon="history">history</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-widest">История</span>
+</div>
+<!-- Dest 3 -->
+<div class="flex flex-col items-center justify-center text-zinc-600 hover:text-zinc-300 transition-all cursor-pointer active:scale-90">
+<span class="material-symbols-outlined mb-1" data-icon="confirmation_number">confirmation_number</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-widest">Скидки</span>
+</div>
+<!-- Dest 4: ACTIVE -->
+<div class="flex flex-col items-center justify-center text-[#a3a6ff] bg-[#a3a6ff]/10 rounded-2xl px-4 py-2 transition-all cursor-pointer active:scale-90">
+<span class="material-symbols-outlined mb-1" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-widest">Профиль</span>
+</div>
+</nav>
+</body></html>

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Obsidian Dispatch - Аналитика и Отчеты</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#1a191b",
+                        "outline-variant": "#484849",
+                        "on-tertiary-fixed-variant": "#003d5a",
+                        "on-secondary-fixed": "#4f0089",
+                        "on-error": "#490013",
+                        "surface-container-low": "#131314",
+                        "on-surface-variant": "#adaaab",
+                        "error-container": "#a70138",
+                        "on-primary": "#0f00a4",
+                        "on-primary-container": "#0a0081",
+                        "on-surface": "#ffffff",
+                        "primary-fixed": "#9396ff",
+                        "on-secondary-fixed-variant": "#7511c3",
+                        "on-background": "#ffffff",
+                        "background": "#0e0e0f",
+                        "on-tertiary-fixed": "#001a29",
+                        "surface-bright": "#2c2c2d",
+                        "on-primary-fixed-variant": "#0e009d",
+                        "primary-dim": "#6063ee",
+                        "surface-container-lowest": "#000000",
+                        "primary": "#a3a6ff",
+                        "tertiary-fixed": "#40bbff",
+                        "primary-container": "#9396ff",
+                        "tertiary-container": "#34b5fa",
+                        "error": "#ff6e84",
+                        "secondary-container": "#6f00be",
+                        "surface-container-highest": "#262627",
+                        "surface-variant": "#262627",
+                        "surface-tint": "#a3a6ff",
+                        "on-primary-fixed": "#000000",
+                        "error-dim": "#d73357",
+                        "inverse-surface": "#fcf8f9",
+                        "surface": "#0e0e0f",
+                        "secondary": "#c180ff",
+                        "on-tertiary": "#003b56",
+                        "surface-container-high": "#201f21",
+                        "secondary-fixed": "#e5c6ff",
+                        "inverse-primary": "#494bd7",
+                        "primary-fixed-dim": "#8387ff",
+                        "secondary-fixed-dim": "#dbb4ff",
+                        "tertiary-dim": "#17a8ec",
+                        "on-tertiary-container": "#003047",
+                        "on-secondary": "#33005b",
+                        "tertiary-fixed-dim": "#25adf1",
+                        "on-error-container": "#ffb2b9",
+                        "outline": "#767576",
+                        "secondary-dim": "#9c48ea",
+                        "tertiary": "#61c2ff",
+                        "on-secondary-container": "#e9cdff",
+                        "inverse-on-surface": "#565556",
+                        "surface-dim": "#0e0e0f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #0e0e0f; color: #ffffff; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-card { background: rgba(38, 38, 39, 0.4); backdrop-filter: blur(20px); border: 1px solid rgba(72, 72, 73, 0.15); }
+        .gradient-text { background: linear-gradient(135deg, #a3a6ff 0%, #c180ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .gradient-button { background: linear-gradient(135deg, #a3a6ff 0%, #c180ff 100%); color: #000000; }
+    </style>
+</head>
+<body class="bg-background text-on-surface overflow-hidden">
+<!-- SideNavBar Anchor -->
+<aside class="h-screen w-64 fixed left-0 top-0 flex flex-col bg-slate-900/40 backdrop-blur-3xl border-r border-white/15 shadow-[0_20px_40px_rgba(0,0,0,0.4)] z-50">
+<div class="flex flex-col h-full py-8 px-4 font-inter tracking-tight font-medium text-sm">
+<div class="px-4 mb-10">
+<h1 class="text-xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-indigo-300 to-purple-400">Obsidian Dispatch</h1>
+<p class="text-[10px] uppercase tracking-widest text-slate-500 mt-1">Almaty Central Hub</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-slate-400 hover:text-slate-200 hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Monitoring</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-slate-400 hover:text-slate-200 hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">steering_wheel_heat</span>
+<span>Drivers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-slate-400 hover:text-slate-200 hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">local_taxi</span>
+<span>Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 bg-indigo-500/10 text-indigo-300 border-r-2 border-indigo-400" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span>Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-slate-400 hover:text-slate-200 hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span>Tariffs</span>
+</a>
+</nav>
+<div class="pt-6 border-t border-white/5 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">help_center</span>
+<span>Support</span>
+</a>
+<div class="mt-4 flex items-center gap-3 px-4 py-3 bg-white/5 rounded-2xl">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="Dispatcher Profile Headshot professional man in dark studio lighting wearing a suit" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdznZp27Utq3uvSXMYP4ork2El14JdcowI4vBhhWWiuH5GcHBRhiR6ZIG5ihdx31lCwBuC-777Xq_bpRGxp4u48Z9AHdIKvS0iu2eMzoQC4bTn2xCAuVSyZW0T9rOOPIAmcMG6o5ZNTGKOu4IRy3orlRsv0T-Yzl2920Hl41HnzOn24UCXDwWpXEc5mN_iudlr_h20aVmdwaLU833RumnHsAk8aOhL-HKW9Bremg7FgjHzYevz2bzc48alBgzpYH51Ew_UVHoOUIY"/>
+<div class="overflow-hidden">
+<p class="text-xs font-bold text-on-surface truncate">Arman S.</p>
+<p class="text-[10px] text-on-surface-variant truncate">Dispatcher</p>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopAppBar Anchor -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 z-40 bg-[#0e0e0f]/80 backdrop-blur-xl border-b border-white/5">
+<div class="flex items-center justify-between px-8 w-full h-full font-inter text-sm">
+<div class="flex items-center gap-6 w-1/2">
+<div class="relative w-full max-w-md flex items-center focus-within:ring-1 focus-within:ring-indigo-500/30 transition-all rounded-full bg-surface-container-highest px-4 py-1.5">
+<span class="material-symbols-outlined text-outline text-lg">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-xs w-full text-on-surface placeholder:text-on-surface-variant" placeholder="Поиск по отчетам или ID..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-5">
+<button class="text-slate-400 hover:text-indigo-300 transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-slate-400 hover:text-indigo-300 transition-all">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<div class="h-6 w-[1px] bg-white/10 mx-1"></div>
+<button class="flex items-center gap-2 text-indigo-400 font-bold">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="hidden lg:block">Arman_Admin</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 mt-16 p-8 h-[calc(100vh-4rem)] overflow-y-auto scroll-smooth bg-background">
+<div class="max-w-7xl mx-auto space-y-8">
+<!-- Page Header & Controls -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h2 class="text-3xl font-extrabold tracking-tight mb-2">Аналитика и Отчеты</h2>
+<p class="text-on-surface-variant max-w-xl">Полный обзор операционной деятельности Obsidian Dispatch в регионе Алматы.</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex items-center glass-card px-4 py-2 rounded-xl text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-lg mr-2">calendar_today</span>
+<span>01 Окт 2023 — 31 Окт 2023</span>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 glass-card rounded-xl text-sm hover:bg-white/5 transition-all">
+<span class="material-symbols-outlined text-lg">download</span>
+<span>Экспорт PDF</span>
+</button>
+<button class="flex items-center gap-2 px-5 py-2 gradient-button rounded-full text-sm font-bold shadow-lg shadow-indigo-500/20 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-lg">add_chart</span>
+<span>Новый отчет</span>
+</button>
+</div>
+</div>
+<!-- Summary Stats: Bento Grid Style -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="glass-card p-6 rounded-[2rem] flex flex-col justify-between h-40">
+<div class="flex justify-between items-start">
+<span class="p-2 bg-primary/10 text-primary rounded-xl">
+<span class="material-symbols-outlined">payments</span>
+</span>
+<span class="text-xs text-green-400 flex items-center font-bold">
+                            +12.5% <span class="material-symbols-outlined text-xs ml-0.5">trending_up</span>
+</span>
+</div>
+<div>
+<p class="text-on-surface-variant text-xs font-medium uppercase tracking-wider">Выручка за месяц</p>
+<h3 class="text-2xl font-black mt-1">4.280.000 ₸</h3>
+</div>
+</div>
+<div class="glass-card p-6 rounded-[2rem] flex flex-col justify-between h-40">
+<div class="flex justify-between items-start">
+<span class="p-2 bg-secondary/10 text-secondary rounded-xl">
+<span class="material-symbols-outlined">local_taxi</span>
+</span>
+<span class="text-xs text-green-400 flex items-center font-bold">
+                            +8.2% <span class="material-symbols-outlined text-xs ml-0.5">trending_up</span>
+</span>
+</div>
+<div>
+<p class="text-on-surface-variant text-xs font-medium uppercase tracking-wider">Всего поездок</p>
+<h3 class="text-2xl font-black mt-1">12.450</h3>
+</div>
+</div>
+<div class="glass-card p-6 rounded-[2rem] flex flex-col justify-between h-40">
+<div class="flex justify-between items-start">
+<span class="p-2 bg-tertiary/10 text-tertiary rounded-xl">
+<span class="material-symbols-outlined">person</span>
+</span>
+<span class="text-xs text-on-surface-variant flex items-center font-bold">
+                            0.0% <span class="material-symbols-outlined text-xs ml-0.5">horizontal_rule</span>
+</span>
+</div>
+<div>
+<p class="text-on-surface-variant text-xs font-medium uppercase tracking-wider">Активные водители</p>
+<h3 class="text-2xl font-black mt-1">842</h3>
+</div>
+</div>
+<div class="glass-card p-6 rounded-[2rem] flex flex-col justify-between h-40">
+<div class="flex justify-between items-start">
+<span class="p-2 bg-error/10 text-error rounded-xl">
+<span class="material-symbols-outlined">avg_pace</span>
+</span>
+<span class="text-xs text-red-400 flex items-center font-bold">
+                            -2.1% <span class="material-symbols-outlined text-xs ml-0.5">trending_down</span>
+</span>
+</div>
+<div>
+<p class="text-on-surface-variant text-xs font-medium uppercase tracking-wider">Ср. время подачи</p>
+<h3 class="text-2xl font-black mt-1">4.2 мин</h3>
+</div>
+</div>
+</div>
+<!-- Charts Section: Main Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Large Chart: Revenue & Trip Count -->
+<div class="lg:col-span-2 glass-card p-8 rounded-[2.5rem] relative overflow-hidden min-h-[400px]">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h4 class="text-lg font-bold">Динамика активности</h4>
+<p class="text-sm text-on-surface-variant">Сравнение выручки и количества заказов</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 text-xs">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span class="text-on-surface-variant">Выручка</span>
+</div>
+<div class="flex items-center gap-2 text-xs">
+<span class="w-3 h-3 rounded-full bg-tertiary"></span>
+<span class="text-on-surface-variant">Поездки</span>
+</div>
+</div>
+</div>
+<!-- Simulated Vector Chart -->
+<div class="relative h-64 w-full mt-4">
+<svg class="w-full h-full" viewbox="0 0 800 200">
+<!-- Grid lines -->
+<line class="text-white/5" stroke="currentColor" stroke-width="1" x1="0" x2="800" y1="0" y2="0"></line>
+<line class="text-white/5" stroke="currentColor" stroke-width="1" x1="0" x2="800" y1="50" y2="50"></line>
+<line class="text-white/5" stroke="currentColor" stroke-width="1" x1="0" x2="800" y1="100" y2="100"></line>
+<line class="text-white/5" stroke="currentColor" stroke-width="1" x1="0" x2="800" y1="150" y2="150"></line>
+<!-- Primary Path (Revenue) -->
+<path d="M0 160 Q 100 120, 200 140 T 400 60 T 600 100 T 800 40" fill="none" stroke="#a3a6ff" stroke-linecap="round" stroke-width="4"></path>
+<path d="M0 160 Q 100 120, 200 140 T 400 60 T 600 100 T 800 40 L 800 200 L 0 200 Z" fill="url(#grad1)" opacity="0.2"></path>
+<!-- Tertiary Path (Trips) -->
+<path d="M0 180 Q 150 160, 300 170 T 500 130 T 800 150" fill="none" stroke="#61c2ff" stroke-dasharray="8 4" stroke-linecap="round" stroke-width="3"></path>
+<defs>
+<lineargradient id="grad1" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#a3a6ff;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#a3a6ff;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+</svg>
+<!-- Labels -->
+<div class="flex justify-between mt-4 text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">
+<span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span>
+</div>
+</div>
+</div>
+<!-- Secondary Chart: Driver Efficiency -->
+<div class="glass-card p-8 rounded-[2.5rem] flex flex-col">
+<h4 class="text-lg font-bold mb-1">Эффективность водителей</h4>
+<p class="text-sm text-on-surface-variant mb-8">Рейтинг активности по категориям</p>
+<div class="flex-1 flex flex-col justify-center space-y-6">
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold uppercase tracking-wider">
+<span>Бизнес</span>
+<span>88%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[88%] rounded-full shadow-[0_0_10px_rgba(193,128,255,0.4)]"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold uppercase tracking-wider">
+<span>Комфорт+</span>
+<span>64%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[64%] rounded-full shadow-[0_0_10px_rgba(163,166,255,0.4)]"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold uppercase tracking-wider">
+<span>Эконом</span>
+<span>92%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[92%] rounded-full shadow-[0_0_10px_rgba(97,194,255,0.4)]"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold uppercase tracking-wider">
+<span>Минивэн</span>
+<span>35%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-outline-variant w-[35%] rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-white/5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">auto_graph</span>
+</div>
+<div>
+<p class="text-xs font-bold">Рекордный рост</p>
+<p class="text-[10px] text-on-surface-variant">Категория 'Эконом' выросла на 14%</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Section: Detailed Reports Table -->
+<div class="glass-card rounded-[2.5rem] overflow-hidden">
+<div class="p-8 border-b border-white/5 flex items-center justify-between">
+<div>
+<h4 class="text-lg font-bold">Последние детализированные отчеты</h4>
+<p class="text-sm text-on-surface-variant">История формирования и статус выгрузок</p>
+</div>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-white/5 rounded-lg text-on-surface-variant transition-all">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+<button class="p-2 hover:bg-white/5 rounded-lg text-on-surface-variant transition-all">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-xs font-bold text-on-surface-variant uppercase tracking-widest bg-white/[0.02]">
+<th class="px-8 py-5">Название отчета</th>
+<th class="px-8 py-5">Период</th>
+<th class="px-8 py-5">Создан</th>
+<th class="px-8 py-5">Объем</th>
+<th class="px-8 py-5">Статус</th>
+<th class="px-8 py-5 text-right">Действие</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5">
+<tr class="hover:bg-white/[0.03] transition-colors group">
+<td class="px-8 py-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-sm">description</span>
+</div>
+<span class="font-bold">Выручка за октябрь (Almaty)</span>
+</div>
+</td>
+<td class="px-8 py-6 text-on-surface-variant text-sm">01.10 - 31.10.2023</td>
+<td class="px-8 py-6 text-on-surface-variant text-sm">Сегодня, 14:20</td>
+<td class="px-8 py-6 text-on-surface-variant text-sm">4.2 MB</td>
+<td class="px-8 py-6">
+<span class="px-3 py-1 rounded-full bg-green-500/10 text-green-400 text-[10px] font-bold uppercase tracking-wider">Готов</span>
+</td>
+<td class="px-8 py-6 text-right">
+<button class="text-primary hover:underline text-xs font-bold transition-all">Скачать CSV</button>
+</td>
+</tr>
+<tr class="hover:bg-white/[0.03] transition-colors group">
+<td class="px-8 py-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container-highest flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-sm">person_pin</span>
+</div>
+<span class="font-bold">Активность водителей: Бизнес</span>
+</div>
+</td>
+<td class="px-8 py-6 text-on-surface-variant text-sm">Еженедельный</td>
+<td class="px-8 py-6 text-on-surface-variant text-sm">Вчера, 09:12</td>
+<td class="px-8 py-6 text-on-surface-variant text-sm">1.8 MB</td>
+<td class="px-8 py-6">
+<span class="px-3 py-1 rounded-full bg-green-500/10 text-green-400 text-[10px] font-bold uppercase tracking-wider">Готов</span>
+</td>
+<td class="px-8 py-6 text-right">
+<button class="text-primary hover:underline text-xs font-bold transition-all">Скачать PDF</button>
+</td>
+</tr>
+<tr class="hover:bg-white/[0.03] transition-colors group">
+<td class="px-8 py-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container-highest flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-sm">history</span>
+</div>
+<span class="font-bold">Архив жалоб и инцидентов</span>
+</div>
+</td>
+<td class="px-8 py-6 text-on-surface-variant text-sm">Q3 2023</td>
+<td class="px-8 py-6 text-on-surface-variant text-sm">28 Окт, 18:45</td>
+<td class="px-8 py-6 text-on-surface-variant text-sm">12.5 MB</td>
+<td class="px-8 py-6">
+<span class="px-3 py-1 rounded-full bg-surface-container-highest text-on-surface-variant text-[10px] font-bold uppercase tracking-wider">В архиве</span>
+</td>
+<td class="px-8 py-6 text-right">
+<button class="text-primary hover:underline text-xs font-bold transition-all">Запросить</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-6 bg-white/[0.01] flex justify-center">
+<button class="text-xs font-bold text-on-surface-variant hover:text-on-surface transition-all flex items-center gap-2">
+                        Показать все отчеты <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+</div>
+<!-- Context Info Area -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-12">
+<div class="relative rounded-[2rem] overflow-hidden h-48 flex items-end p-8 group">
+<img class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Dramatic night cityscape of Almaty Kazakhstan with neon lights and Kok Tobe tower in distance moody cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLHDsT-avCP9cugAhoKjf7Z3chyVEdeBHV7kHKvB5CSb_RC6U7CY47-jeonopF1Cu0GFovKEvejTRjObFAMUOIwvLFmQE5xbxIX9yNfQWGwksWe3hcQkcBh1eGkX4YyJ7DusepyUlrdYK-5pVZo7OOWTClG68A2k_nuv-PY9DOV3LBNgv-Q_FHsiMkbesSrgWWPjB34Z1mLfsOr9Qnvuy3S5aAztWYgLnEAGnq8IxzAJeE_4Lgi9kZ6xmI4ILpZKJD2Gqw5tsv_UU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
+<div class="relative z-10">
+<h5 class="text-lg font-black tracking-tight leading-tight">Обзор локаций Almaty</h5>
+<p class="text-xs text-on-surface-variant">Наибольшая концентрация заказов: Бостандыкский район</p>
+</div>
+</div>
+<div class="glass-card p-8 rounded-[2rem] flex items-center justify-between">
+<div>
+<h5 class="text-lg font-bold mb-2">Прогноз на выходные</h5>
+<p class="text-sm text-on-surface-variant leading-relaxed">Ожидается рост спроса на 15-20% в связи с мероприятием 'Medeu Fest'. Рекомендуем увеличить количество активных водителей в горном направлении.</p>
+</div>
+<div class="w-20 h-20 flex-shrink-0 bg-primary/20 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl text-primary" data-weight="fill">tips_and_updates</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Map Background Bleed (Decorative) -->
+<div class="fixed bottom-0 right-0 w-full h-full -z-10 opacity-10 pointer-events-none grayscale">
+<!-- data-location="Almaty" -->
+<div class="w-full h-full bg-[url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&amp;w=1600&amp;auto=format&amp;fit=crop')] bg-cover bg-center" data-alt="Stylized map outline overlay of Almaty city streets with glowing neon connections between districts" data-location="Almaty" style=""></div>
+</div>
+</body></html>

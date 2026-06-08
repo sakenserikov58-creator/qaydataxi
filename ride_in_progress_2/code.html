@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#2c2c2d",
+                    "secondary-dim": "#9c48ea",
+                    "surface-dim": "#0e0e0f",
+                    "on-secondary-fixed": "#4f0089",
+                    "tertiary-container": "#34b5fa",
+                    "tertiary-fixed": "#40bbff",
+                    "outline-variant": "#484849",
+                    "on-secondary-fixed-variant": "#7511c3",
+                    "surface-container-lowest": "#000000",
+                    "on-tertiary-container": "#003047",
+                    "tertiary-dim": "#17a8ec",
+                    "on-tertiary-fixed-variant": "#003d5a",
+                    "on-error-container": "#ffb2b9",
+                    "surface": "#0e0e0f",
+                    "on-primary-fixed-variant": "#0e009d",
+                    "on-tertiary": "#003b56",
+                    "inverse-surface": "#fcf8f9",
+                    "on-primary-fixed": "#000000",
+                    "on-secondary-container": "#e9cdff",
+                    "tertiary-fixed-dim": "#25adf1",
+                    "inverse-on-surface": "#565556",
+                    "surface-tint": "#a3a6ff",
+                    "background": "#0e0e0f",
+                    "surface-container-low": "#131314",
+                    "secondary-fixed": "#e5c6ff",
+                    "on-background": "#ffffff",
+                    "primary-fixed": "#9396ff",
+                    "on-secondary": "#33005b",
+                    "on-error": "#490013",
+                    "primary-container": "#9396ff",
+                    "primary-fixed-dim": "#8387ff",
+                    "secondary-container": "#6f00be",
+                    "on-primary-container": "#0a0081",
+                    "surface-container-high": "#201f21",
+                    "error": "#ff6e84",
+                    "inverse-primary": "#494bd7",
+                    "surface-variant": "#262627",
+                    "on-tertiary-fixed": "#001a29",
+                    "secondary": "#c180ff",
+                    "on-surface-variant": "#adaaab",
+                    "surface-container-highest": "#262627",
+                    "primary": "#a3a6ff",
+                    "surface-container": "#1a191b",
+                    "on-primary": "#0f00a4",
+                    "tertiary": "#61c2ff",
+                    "error-dim": "#d73357",
+                    "outline": "#767576",
+                    "primary-dim": "#6063ee",
+                    "on-surface": "#ffffff",
+                    "secondary-fixed-dim": "#dbb4ff",
+                    "error-container": "#a70138"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-glass {
+            background: rgba(22, 22, 23, 0.6);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+        }
+        .map-gradient-overlay {
+            background: linear-gradient(to bottom, rgba(14, 14, 15, 0.8) 0%, rgba(14, 14, 15, 0) 25%, rgba(14, 14, 15, 0) 70%, rgba(14, 14, 15, 1) 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body overflow-hidden">
+<!-- Top AppBar (JSON Derived) -->
+<header class="fixed top-0 w-full z-50 bg-[#0e0e0f]/60 backdrop-blur-3xl flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-4">
+<button class="hover:bg-zinc-800/40 active:scale-95 transition-all duration-200 text-zinc-100 p-2 rounded-full">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="font-['Inter'] font-semibold tracking-tight text-zinc-100">В пути</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden md:block">
+<p class="text-[10px] uppercase tracking-widest text-zinc-500 font-bold">Прибытие через</p>
+<p class="text-indigo-400 font-bold">12 мин</p>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-indigo-400/30 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Professional user profile avatar of a young man with a friendly expression in high-end studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCp5pYuzW-fMCwtROxlmISnAT0Uhw3f9tR8C66ctug0Eo0ZfeiJjdhtA3rcmnevBFOLPqoms5ZQ3BhST5-VdUStuiY3bYnArQPsO-9sMx5fVXCicEcE4Zps26OC24tkSCjjEXAjCRJ4IIsGjw9QUQnglZIYlW_wZAccsmYaQLm3DXRsn-zBuH_kyGeF0LRNzcJFQpDVoeKIE20Y7avIntf16s1z4T07NbcmPvbUewkYegfehdQnL-PrcxwpknSFE-nWEASPEBqq-NE"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas: The Map -->
+<main class="relative w-full h-screen">
+<!-- Simulated Map Background -->
+<div class="absolute inset-0 w-full h-full bg-surface-dim">
+<img class="w-full h-full object-cover opacity-60" data-alt="Cinematic dark mode city map visualization of Almaty with glowing purple and blue neon transit lines and subtle architectural outlines" data-location="Almaty" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtfog1xCSKXDCURsGCLx1s-wV2fKXDVeUVc7kx4x5pS9A35CxRYJhGl8qnnlmxsKPGXDQbpajwQjz0A79SevILlQH46yAS9VT7dTP67hUiI4v_kvIQgErs-0TZzfKwSithnIaZ39gW7BW3DZi3mNjkgBlXOCPkYiacy_hKbniOgrvptXOmXfkE7ILONC_IV9Z2wyo_8D-4Ovd06yQWoV8xAtFIe1NP238X0H47_RMrV_zCBbTL6zxs6O9S2Px1U3kx9TcNxhJA_7k"/>
+<div class="absolute inset-0 map-gradient-overlay pointer-events-none"></div>
+<!-- Active Route Simulation -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" preserveaspectratio="none">
+<path class="drop-shadow-[0_0_15px_rgba(163,166,255,0.6)]" d="M 200,800 Q 400,600 300,400 T 500,100" fill="none" stroke="url(#routeGradient)" stroke-linecap="round" stroke-width="6"></path>
+<defs>
+<lineargradient id="routeGradient" x1="0%" x2="100%" y1="100%" y2="0%">
+<stop offset="0%" style="stop-color:#c180ff;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#a3a6ff;stop-opacity:1"></stop>
+</lineargradient>
+</defs>
+</svg>
+<!-- Pulsing Markers -->
+<div class="absolute top-[15%] left-[65%] -translate-x-1/2 -translate-y-1/2">
+<div class="relative flex items-center justify-center">
+<div class="absolute w-12 h-12 bg-tertiary/20 rounded-full animate-ping"></div>
+<div class="w-4 h-4 bg-tertiary rounded-full border-2 border-on-background shadow-[0_0_15px_rgba(97,194,255,0.8)]"></div>
+</div>
+</div>
+<div class="absolute bottom-[25%] left-[25%]">
+<div class="relative flex items-center justify-center">
+<div class="absolute w-16 h-16 bg-primary/20 rounded-full animate-pulse"></div>
+<span class="material-symbols-outlined text-primary text-4xl drop-shadow-md" style="font-variation-settings: 'FILL' 1;">local_taxi</span>
+</div>
+</div>
+</div>
+<!-- Floating Destination Chip -->
+<div class="absolute top-24 left-1/2 -translate-x-1/2 w-[90%] max-w-md">
+<div class="bg-surface-container-highest/60 backdrop-blur-xl p-4 rounded-2xl border border-outline-variant/15 flex items-center gap-4 shadow-2xl">
+<div class="bg-primary/20 p-2 rounded-xl">
+<span class="material-symbols-outlined text-primary">location_on</span>
+</div>
+<div>
+<p class="text-on-surface-variant text-[10px] uppercase tracking-widest font-bold">Место назначения</p>
+<p class="text-on-surface font-semibold truncate">Проспект Абая, 103 (The Ritz-Carlton)</p>
+</div>
+</div>
+</div>
+<!-- Driver Info Bottom Card -->
+<div class="fixed bottom-0 left-0 w-full z-40 p-4 pb-12 md:pb-8 flex justify-center">
+<div class="w-full max-w-2xl bg-glass rounded-[32px] overflow-hidden border border-outline-variant/10 shadow-[0_-20px_40px_rgba(0,0,0,0.4)]">
+<!-- Ride Status Bar -->
+<div class="px-8 py-3 bg-primary/10 border-b border-primary/5 flex justify-between items-center">
+<span class="text-primary text-xs font-bold uppercase tracking-widest">В процессе поездки</span>
+<span class="text-on-surface font-bold text-sm tracking-tight">8.4 км до финиша</span>
+</div>
+<!-- Main Driver Info -->
+<div class="p-8">
+<div class="flex items-start justify-between mb-8">
+<div class="flex items-center gap-6">
+<div class="relative">
+<img class="w-20 h-20 rounded-2xl object-cover border-2 border-surface-bright shadow-xl" data-alt="Experienced professional male driver portrait with a warm smile and dark hair, soft urban background lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClQKr2lA6OZH6mtJRPKDom02uJ5Tfyrr4vD73TS5twEZp60CKOahEm5VAOaU7czAeR7pH9rJrRXBMwsfzQksGCufU9ltlKuXFAXWPtNoDCj5FOOAb2Jg1KJeLZsYBNIQ49DJH9n8fcFMe59_NHLOPHNKH7-pKINwlq6_vA53fURpPITug899T5rK8nrkRyk42eex4P95NVb9zrvTHXzqbMHna_6DPyWuGqk7m-p3GXGYgemOhdBQoj7pVoKRoqVpBC-rN28hiXpos"/>
+<div class="absolute -bottom-2 -right-2 bg-secondary text-on-primary-fixed px-2 py-0.5 rounded-lg text-[10px] font-black tracking-tighter">
+                                    TOP
+                                </div>
+</div>
+<div>
+<h2 class="text-2xl font-black tracking-tight text-on-surface">Константин</h2>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-on-surface-variant text-sm font-semibold tracking-tight">4.96 • 1,240 поездок</span>
+</div>
+<p class="text-on-surface-variant text-sm mt-1 font-medium italic opacity-80">"Всегда выбираю лучший маршрут"</p>
+</div>
+</div>
+<div class="text-right">
+<div class="bg-surface-container-high rounded-xl px-4 py-2 border border-outline-variant/20 inline-block">
+<p class="text-on-surface font-bold tracking-tighter text-lg leading-tight">BMW 5-Series</p>
+<p class="text-primary font-black text-sm tracking-widest uppercase">777 AAA 02</p>
+</div>
+<p class="text-[10px] text-zinc-500 uppercase tracking-widest mt-2 font-bold">Premium Class</p>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center gap-3 py-5 px-6 rounded-full bg-gradient-to-br from-primary to-secondary text-on-primary-fixed font-bold tracking-tight active:scale-[0.98] transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">call</span>
+                            Позвонить
+                        </button>
+<button class="flex items-center justify-center gap-3 py-5 px-6 rounded-full bg-surface-variant/40 hover:bg-surface-variant/60 border border-outline-variant/15 text-on-surface font-bold tracking-tight active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined">close</span>
+                            Отменить
+                        </button>
+</div>
+</div>
+<!-- Interaction Hint -->
+<div class="flex justify-center pb-4 opacity-30">
+<div class="w-12 h-1.5 bg-on-surface-variant rounded-full"></div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Suppressed due to task-focused journey but structure maintained for logic) -->
+<!-- Not visible as it's a sub-page/focused journey -->
+</body></html>

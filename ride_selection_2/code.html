@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Выбор поездки — Obsidian Ether</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#2c2c2d",
+                        "secondary-dim": "#9c48ea",
+                        "surface-dim": "#0e0e0f",
+                        "on-secondary-fixed": "#4f0089",
+                        "tertiary-container": "#34b5fa",
+                        "tertiary-fixed": "#40bbff",
+                        "outline-variant": "#484849",
+                        "on-secondary-fixed-variant": "#7511c3",
+                        "surface-container-lowest": "#000000",
+                        "on-tertiary-container": "#003047",
+                        "tertiary-dim": "#17a8ec",
+                        "on-tertiary-fixed-variant": "#003d5a",
+                        "on-error-container": "#ffb2b9",
+                        "surface": "#0e0e0f",
+                        "on-primary-fixed-variant": "#0e009d",
+                        "on-tertiary": "#003b56",
+                        "inverse-surface": "#fcf8f9",
+                        "on-primary-fixed": "#000000",
+                        "on-secondary-container": "#e9cdff",
+                        "tertiary-fixed-dim": "#25adf1",
+                        "inverse-on-surface": "#565556",
+                        "surface-tint": "#a3a6ff",
+                        "background": "#0e0e0f",
+                        "surface-container-low": "#131314",
+                        "secondary-fixed": "#e5c6ff",
+                        "on-background": "#ffffff",
+                        "primary-fixed": "#9396ff",
+                        "on-secondary": "#33005b",
+                        "on-error": "#490013",
+                        "primary-container": "#9396ff",
+                        "primary-fixed-dim": "#8387ff",
+                        "secondary-container": "#6f00be",
+                        "on-primary-container": "#0a0081",
+                        "surface-container-high": "#201f21",
+                        "error": "#ff6e84",
+                        "inverse-primary": "#494bd7",
+                        "surface-variant": "#262627",
+                        "on-tertiary-fixed": "#001a29",
+                        "secondary": "#c180ff",
+                        "on-surface-variant": "#adaaab",
+                        "surface-container-highest": "#262627",
+                        "primary": "#a3a6ff",
+                        "surface-container": "#1a191b",
+                        "on-primary": "#0f00a4",
+                        "tertiary": "#61c2ff",
+                        "error-dim": "#d73357",
+                        "outline": "#767576",
+                        "primary-dim": "#6063ee",
+                        "on-surface": "#ffffff",
+                        "secondary-fixed-dim": "#dbb4ff",
+                        "error-container": "#a70138"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(38, 38, 39, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#0e0e0f]/60 backdrop-blur-3xl flex justify-between items-center px-6 py-4 w-full shadow-none">
+<div class="flex items-center gap-4">
+<button class="text-indigo-400 hover:bg-zinc-800/40 active:scale-95 transition-all duration-200 p-2 rounded-full">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="text-xl font-bold tracking-tighter text-zinc-50">Obsidian</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant/15">
+<img class="w-full h-full object-cover" data-alt="Close-up professional portrait of a stylish man in a dark environment with soft cinematic purple rim lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANgwS6gWowjwH9BJtKdJh6v1RE6TCdDcLQTUYD6z7s1df1YYKAWTRviXg1leksD_emtpwmGkJKoQbTzyEFbyJE78siDVSrt6MzP2J0FbL4N8UZ0iT6ZgTEkcksJFN3vuNI4ofEzM3eFl6BX1rITZPqpvYexkGmczezHGiqTHo0sksASMvGlGJnC_7AfbmQupSbjA_2r-ATsYLozFl6oMKAC9Gcg8LlTcROm-kSYTPYzL7T5rG5nPz27PzX9778zAg9jTXOowWMM98"/>
+</div>
+</div>
+</header>
+<!-- Main Canvas: Map Background -->
+<main class="flex-grow relative flex flex-col pt-20">
+<div class="absolute inset-0 z-0">
+<!-- Simulated Map -->
+<div class="w-full h-full bg-surface-dim relative overflow-hidden">
+<img class="w-full h-full object-cover opacity-40 mix-blend-luminosity" data-alt="Stylized dark minimalist city map with glowing neon purple and blue arterial roads and subtle topological lines" data-location="Almaty" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBy9aSQj9JLQWTo1Fd3cEGEQWVaVf-m0keDk1ZAro5mERJCNyyrywzRHLmSpwLHDsLyb9mXUSD2pt2_zmRgoRdRFkzk7AAtoMw3Ml8A1TC-H6GavA8ezNGzCD5tzcZugD6v62FIKOcftnqFduA6y9428PWpl_mTMJ4EX6lWgThtVdPy_ZcFX267v-S_OMpQtEPKOdWZmwTGfKIUGCnshwX8irHIoKIH8llAxfLYTAHtYWMURYccmzRqDfeN--EC2p7Ypv0ao30uAfg"/>
+<!-- Animated Route Line (Visual) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" viewbox="0 0 400 800">
+<path class="drop-shadow-[0_0_8px_rgba(163,166,255,0.6)]" d="M 200 600 Q 150 450 250 350 T 200 150" fill="none" stroke="url(#routeGradient)" stroke-dasharray="10 15" stroke-linecap="round" stroke-width="4"></path>
+<defs>
+<lineargradient id="routeGradient" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#a3a6ff"></stop>
+<stop offset="100%" stop-color="#c180ff"></stop>
+</lineargradient>
+</defs>
+<!-- Markers -->
+<circle cx="200" cy="600" fill="#a3a6ff" r="8"></circle>
+<circle cx="200" cy="600" fill="#a3a6ff" fill-opacity="0.2" r="16"></circle>
+<circle cx="200" cy="150" fill="#c180ff" r="8"></circle>
+</svg>
+</div>
+</div>
+<!-- Content Overlay -->
+<div class="relative z-10 flex flex-col h-full px-6 pb-32">
+<!-- Route Details Card -->
+<div class="glass-card mt-4 rounded-3xl p-6 border border-outline-variant/15">
+<div class="flex flex-col space-y-4">
+<div class="flex items-start gap-4">
+<div class="flex flex-col items-center mt-1.5">
+<div class="w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_10px_rgba(163,166,255,0.8)]"></div>
+<div class="w-px h-10 bg-outline-variant/30 my-1"></div>
+<div class="w-2.5 h-2.5 rounded-sm bg-secondary shadow-[0_0_10px_rgba(193,128,255,0.8)]"></div>
+</div>
+<div class="flex-grow space-y-4">
+<div>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold mb-0.5">Откуда</p>
+<p class="text-zinc-100 font-medium">Пр. Достык, 105</p>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold mb-0.5">Куда</p>
+<p class="text-zinc-100 font-medium">БЦ «Нурлы Тау»</p>
+</div>
+</div>
+<button class="text-indigo-400 p-2 hover:bg-zinc-800/40 rounded-xl transition-all">
+<span class="material-symbols-outlined">swap_vert</span>
+</button>
+</div>
+</div>
+</div>
+<div class="flex-grow"></div>
+<!-- Tiers Selection (Horizontal Scroll) -->
+<div class="mt-8">
+<h3 class="text-sm font-semibold text-zinc-400 uppercase tracking-widest mb-4 px-2">Выберите класс</h3>
+<div class="flex gap-4 overflow-x-auto no-scrollbar pb-4 snap-x">
+<!-- Эконом -->
+<div class="snap-center shrink-0 w-[280px] glass-card rounded-3xl p-5 border border-outline-variant/15 flex flex-col justify-between active:scale-95 transition-transform duration-200 cursor-pointer">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h4 class="text-xl font-bold text-white leading-tight">Эконом</h4>
+<p class="text-sm text-on-surface-variant">4 мин • Hyundai Accent</p>
+</div>
+<div class="bg-surface-container-high p-3 rounded-2xl">
+<span class="material-symbols-outlined text-indigo-400">local_taxi</span>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<span class="text-2xl font-black text-indigo-400">1 250 ₸</span>
+<span class="text-[10px] font-bold text-on-surface-variant bg-surface-container-high px-2 py-1 rounded-lg">ПОПУЛЯРНО</span>
+</div>
+</div>
+<!-- Комфорт (Selected State) -->
+<div class="snap-center shrink-0 w-[280px] bg-indigo-500/10 backdrop-blur-2xl rounded-3xl p-5 border-2 border-primary/40 flex flex-col justify-between active:scale-95 transition-transform duration-200 cursor-pointer relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex justify-between items-start mb-6">
+<div>
+<h4 class="text-xl font-bold text-white leading-tight">Комфорт</h4>
+<p class="text-sm text-indigo-200">6 мин • Toyota Camry</p>
+</div>
+<div class="bg-primary/20 p-3 rounded-2xl">
+<span class="material-symbols-outlined text-primary">directions_car</span>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<span class="text-2xl font-black text-white">1 800 ₸</span>
+<span class="text-[10px] font-bold text-primary-fixed bg-primary/20 px-2 py-1 rounded-lg">РЕКОМЕНДУЕМ</span>
+</div>
+</div>
+<!-- Бизнес -->
+<div class="snap-center shrink-0 w-[280px] glass-card rounded-3xl p-5 border border-outline-variant/15 flex flex-col justify-between active:scale-95 transition-transform duration-200 cursor-pointer">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h4 class="text-xl font-bold text-white leading-tight">Бизнес</h4>
+<p class="text-sm text-on-surface-variant">9 мин • BMW 5 Series</p>
+</div>
+<div class="bg-surface-container-high p-3 rounded-2xl">
+<span class="material-symbols-outlined text-secondary">workspace_premium</span>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<span class="text-2xl font-black text-secondary">3 400 ₸</span>
+<span class="text-[10px] font-bold text-on-surface-variant bg-surface-container-high px-2 py-1 rounded-lg">PREMIUM</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Area -->
+<div class="mt-4 flex gap-3">
+<button class="flex-shrink-0 w-16 h-16 glass-card border border-outline-variant/15 rounded-full flex items-center justify-center text-zinc-400 active:scale-90 transition-transform">
+<span class="material-symbols-outlined">credit_card</span>
+</button>
+<button class="flex-grow h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center shadow-[0_15px_35px_rgba(163,166,255,0.3)] active:scale-95 transition-all duration-200">
+<span class="text-on-primary-fixed font-black uppercase tracking-[0.2em] text-sm">Заказать поездку</span>
+</button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full rounded-t-[32px] z-50 pb-safe bg-[#161617]/40 backdrop-blur-2xl shadow-[0_-10px_40px_rgba(0,0,0,0.4)] flex justify-around items-center px-4 py-3">
+<a class="flex flex-col items-center justify-center text-indigo-400 bg-indigo-500/10 rounded-2xl px-6 py-2 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_taxi</span>
+<span class="font-['Inter'] text-[11px] font-medium uppercase tracking-widest mt-1">Поездка</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-500 py-2 hover:text-zinc-300 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-['Inter'] text-[11px] font-medium uppercase tracking-widest mt-1">История</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-500 py-2 hover:text-zinc-300 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Inter'] text-[11px] font-medium uppercase tracking-widest mt-1">Профиль</span>
+</a>
+</nav>
+</body></html>

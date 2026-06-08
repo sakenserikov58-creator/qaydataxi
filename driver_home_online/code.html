@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Driver App - Midnight Navigator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#2c2c2d",
+                    "secondary-dim": "#9c48ea",
+                    "surface-dim": "#0e0e0f",
+                    "on-secondary-fixed": "#4f0089",
+                    "tertiary-container": "#34b5fa",
+                    "tertiary-fixed": "#40bbff",
+                    "outline-variant": "#484849",
+                    "on-secondary-fixed-variant": "#7511c3",
+                    "surface-container-lowest": "#000000",
+                    "on-tertiary-container": "#003047",
+                    "tertiary-dim": "#17a8ec",
+                    "on-tertiary-fixed-variant": "#003d5a",
+                    "on-error-container": "#ffb2b9",
+                    "surface": "#0e0e0f",
+                    "on-primary-fixed-variant": "#0e009d",
+                    "on-tertiary": "#003b56",
+                    "inverse-surface": "#fcf8f9",
+                    "on-primary-fixed": "#000000",
+                    "on-secondary-container": "#e9cdff",
+                    "tertiary-fixed-dim": "#25adf1",
+                    "inverse-on-surface": "#565556",
+                    "surface-tint": "#a3a6ff",
+                    "background": "#0e0e0f",
+                    "surface-container-low": "#131314",
+                    "secondary-fixed": "#e5c6ff",
+                    "on-background": "#ffffff",
+                    "primary-fixed": "#9396ff",
+                    "on-secondary": "#33005b",
+                    "on-error": "#490013",
+                    "primary-container": "#9396ff",
+                    "primary-fixed-dim": "#8387ff",
+                    "secondary-container": "#6f00be",
+                    "on-primary-container": "#0a0081",
+                    "surface-container-high": "#201f21",
+                    "error": "#ff6e84",
+                    "inverse-primary": "#494bd7",
+                    "surface-variant": "#262627",
+                    "on-tertiary-fixed": "#001a29",
+                    "secondary": "#c180ff",
+                    "on-surface-variant": "#adaaab",
+                    "surface-container-highest": "#262627",
+                    "primary": "#a3a6ff",
+                    "surface-container": "#1a191b",
+                    "on-primary": "#0f00a4",
+                    "tertiary": "#61c2ff",
+                    "error-dim": "#d73357",
+                    "outline": "#767576",
+                    "primary-dim": "#6063ee",
+                    "on-surface": "#ffffff",
+                    "secondary-fixed-dim": "#dbb4ff",
+                    "error-container": "#a70138"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(22, 22, 23, 0.4);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+        }
+        .tonal-shift-no-border { border: none !important; }
+        .map-gradient-overlay {
+            background: radial-gradient(circle at center, transparent 0%, #0e0e0f 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface overflow-hidden">
+<!-- Background Map Layer -->
+<div class="fixed inset-0 z-0">
+<img class="w-full h-full object-cover grayscale brightness-[0.3]" data-alt="Dark stylized vector map of Almaty city with neon blue and violet transit lines glowing in the mist" data-location="Almaty" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmAcYeyZhxiNJOw3OpXMlO54aKEJNxNsB4UZFHUIH6x0AhERp321EvKhxf6QtMImG2vvV2fPkFVTacHaM-WNrRIrDdXst1TQNh_V7PTDBBUsM5POBSCHajxeDEYpfPSqnv9Y2rXJCjO4UfDD0554dp0xZ4kPagvHzEVhpa_30rahuty5__d-5dZXMUsXcSiwUgSU61Q_vdz4XoiQrG-_ypADDZXJcVzJO5NtjcwS0pzqu2HX93COlq_WCU2-6zIpGM9k5_AzuWGTk"/>
+<div class="absolute inset-0 map-gradient-overlay opacity-60"></div>
+</div>
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-[#0e0e0f]/60 backdrop-blur-3xl flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-zinc-800/40 active:scale-95 transition-all duration-200">
+<span class="material-symbols-outlined text-indigo-400">menu</span>
+</button>
+<div class="font-['Inter'] font-semibold tracking-tight text-zinc-100 text-xl font-bold tracking-tighter text-zinc-50">
+                Obsidian
+            </div>
+</div>
+<!-- Online/Offline Toggle -->
+<div class="flex items-center bg-surface-container-lowest rounded-full p-1 border border-outline-variant/15">
+<button class="px-6 py-2 rounded-full bg-indigo-500/10 text-indigo-400 text-sm font-bold transition-all duration-300 flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></div>
+                В СЕТИ
+            </button>
+<button class="px-6 py-2 rounded-full text-zinc-500 text-sm font-medium hover:text-zinc-300 transition-all">
+                ПАУЗА
+            </button>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-indigo-400/30 overflow-hidden active:scale-95 transition-all duration-200">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="Close-up portrait of a professional man with a confident expression, modern haircut, soft studio lighting on dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCm7l4R21NF55XQG9wuXnc8o6rxY4X1ZDrtdGYpJS72ZtR4tMMZ_ds-98Zqd8V7yuGbwWjYFRGgKvYD7snvp9Nb9oVT6jI8jafX71QNZxtRhLf62_fnRjnoOguuWDxP9XEnQd5poY-vx3yPPptB_Rvsf6ATPspptZh14-LBCj31TOBF2IDfb-7nmBoHxXx41XZK8OgpFBBntNZEP0_22mcKGDHRcOVUlvCdkyXsd7N-YHuHw_WZWkmLf9agb8noBk3QrGy8k7z14PM"/>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="relative z-10 pt-28 px-6 pb-32 h-full flex flex-col pointer-events-none">
+<!-- Earnings Dashboard Bento -->
+<div class="w-full max-w-lg mx-auto pointer-events-auto">
+<div class="grid grid-cols-2 gap-4">
+<!-- Main Earnings Card -->
+<div class="col-span-2 glass-panel rounded-[32px] p-6 shadow-2xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-8xl text-primary">account_balance_wallet</span>
+</div>
+<div class="flex justify-between items-start mb-8">
+<div>
+<p class="text-on-surface-variant text-sm font-medium tracking-wide">Доход сегодня</p>
+<h2 class="text-4xl font-extrabold tracking-tight mt-1">24 850 ₸</h2>
+</div>
+<div class="bg-indigo-500/20 px-3 py-1 rounded-lg">
+<span class="text-indigo-300 text-xs font-bold">+12%</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex flex-col">
+<span class="text-on-surface-variant text-[11px] uppercase tracking-widest font-bold">Поездки</span>
+<span class="text-lg font-semibold">14</span>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant/30"></div>
+<div class="flex flex-col">
+<span class="text-on-surface-variant text-[11px] uppercase tracking-widest font-bold">В пути</span>
+<span class="text-lg font-semibold">6ч 42м</span>
+</div>
+<div class="ml-auto">
+<button class="bg-surface-variant/40 hover:bg-surface-variant/60 p-2 rounded-xl transition-colors">
+<span class="material-symbols-outlined text-indigo-400">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Secondary Stats -->
+<div class="glass-panel rounded-[32px] p-5 flex flex-col justify-between aspect-square">
+<div class="w-10 h-10 rounded-2xl bg-tertiary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary">star</span>
+</div>
+<div>
+<p class="text-on-surface-variant text-xs font-medium">Рейтинг</p>
+<h3 class="text-2xl font-bold">4.98</h3>
+</div>
+</div>
+<div class="glass-panel rounded-[32px] p-5 flex flex-col justify-between aspect-square">
+<div class="w-10 h-10 rounded-2xl bg-secondary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">local_fire_department</span>
+</div>
+<div>
+<p class="text-on-surface-variant text-xs font-medium">Активность</p>
+<h3 class="text-2xl font-bold">96%</h3>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Map Elements -->
+<div class="mt-auto mb-6 pointer-events-auto">
+<div class="flex flex-col gap-4 items-end">
+<button class="w-14 h-14 rounded-2xl glass-panel shadow-lg flex items-center justify-center hover:bg-zinc-800/40 active:scale-90 transition-all">
+<span class="material-symbols-outlined text-on-surface">my_location</span>
+</button>
+<button class="w-14 h-14 rounded-2xl glass-panel shadow-lg flex items-center justify-center hover:bg-zinc-800/40 active:scale-90 transition-all">
+<span class="material-symbols-outlined text-on-surface">layers</span>
+</button>
+</div>
+</div>
+<!-- Bottom Sheet (Static Preview) -->
+<div class="w-full max-w-lg mx-auto glass-panel rounded-[32px] p-6 pointer-events-auto shadow-[0_-10px_40px_rgba(0,0,0,0.4)]">
+<div class="w-12 h-1.5 bg-outline-variant/30 rounded-full mx-auto mb-6"></div>
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-bold tracking-tight">Сейчас в городе</h3>
+<span class="text-xs font-bold text-tertiary uppercase tracking-tighter">Высокий спрос</span>
+</div>
+<div class="flex gap-3 overflow-x-auto pb-2 no-scrollbar">
+<div class="flex-shrink-0 bg-surface-container-lowest px-4 py-3 rounded-2xl flex items-center gap-3 border border-outline-variant/10">
+<span class="material-symbols-outlined text-indigo-400 text-sm">bolt</span>
+<span class="text-sm font-medium">Медеу: x1.4</span>
+</div>
+<div class="flex-shrink-0 bg-surface-container-lowest px-4 py-3 rounded-2xl flex items-center gap-3 border border-outline-variant/10">
+<span class="material-symbols-outlined text-indigo-400 text-sm">bolt</span>
+<span class="text-sm font-medium">Центр: x1.2</span>
+</div>
+<div class="flex-shrink-0 bg-surface-container-lowest px-4 py-3 rounded-2xl flex items-center gap-3 border border-outline-variant/10">
+<span class="material-symbols-outlined text-indigo-400 text-sm">bolt</span>
+<span class="text-sm font-medium">Аэропорт: x1.8</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full bg-[#161617]/40 backdrop-blur-2xl rounded-t-[32px] z-50 pb-safe shadow-[0_-10px_40px_rgba(0,0,0,0.4)] flex justify-around items-center px-4 py-3 w-full">
+<!-- Item: Поездка -->
+<a class="flex flex-col items-center justify-center text-indigo-400 bg-indigo-500/10 rounded-2xl px-6 py-2 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_taxi</span>
+<span class="font-['Inter'] text-[11px] font-medium uppercase tracking-widest mt-1">Поездка</span>
+</a>
+<!-- Item: История -->
+<a class="flex flex-col items-center justify-center text-zinc-500 py-2 hover:text-zinc-300 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-['Inter'] text-[11px] font-medium uppercase tracking-widest mt-1">История</span>
+</a>
+<!-- Item: Профиль -->
+<a class="flex flex-col items-center justify-center text-zinc-500 py-2 hover:text-zinc-300 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Inter'] text-[11px] font-medium uppercase tracking-widest mt-1">Профиль</span>
+</a>
+</nav>
+<!-- Map Marker Overlays (Decorative) -->
+<div class="fixed top-1/2 left-1/4 w-4 h-4 bg-indigo-400 rounded-full shadow-[0_0_20px_rgba(163,166,255,0.6)] animate-pulse z-0"></div>
+<div class="fixed top-1/3 right-1/3 w-3 h-3 bg-indigo-400/40 rounded-full shadow-[0_0_15px_rgba(163,166,255,0.3)] z-0"></div>
+</body></html>

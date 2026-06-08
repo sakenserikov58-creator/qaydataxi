@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "surface-container": "#1a191b",
+                "outline-variant": "#484849",
+                "on-tertiary-fixed-variant": "#003d5a",
+                "on-secondary-fixed": "#4f0089",
+                "on-error": "#490013",
+                "surface-container-low": "#131314",
+                "on-surface-variant": "#adaaab",
+                "error-container": "#a70138",
+                "on-primary": "#0f00a4",
+                "on-primary-container": "#0a0081",
+                "on-surface": "#ffffff",
+                "primary-fixed": "#9396ff",
+                "on-secondary-fixed-variant": "#7511c3",
+                "on-background": "#ffffff",
+                "background": "#0e0e0f",
+                "on-tertiary-fixed": "#001a29",
+                "surface-bright": "#2c2c2d",
+                "on-primary-fixed-variant": "#0e009d",
+                "primary-dim": "#6063ee",
+                "surface-container-lowest": "#000000",
+                "primary": "#a3a6ff",
+                "tertiary-fixed": "#40bbff",
+                "primary-container": "#9396ff",
+                "tertiary-container": "#34b5fa",
+                "error": "#ff6e84",
+                "secondary-container": "#6f00be",
+                "surface-container-highest": "#262627",
+                "surface-variant": "#262627",
+                "surface-tint": "#a3a6ff",
+                "on-primary-fixed": "#000000",
+                "error-dim": "#d73357",
+                "inverse-surface": "#fcf8f9",
+                "surface": "#0e0e0f",
+                "secondary": "#c180ff",
+                "on-tertiary": "#003b56",
+                "surface-container-high": "#201f21",
+                "secondary-fixed": "#e5c6ff",
+                "inverse-primary": "#494bd7",
+                "primary-fixed-dim": "#8387ff",
+                "secondary-fixed-dim": "#dbb4ff",
+                "tertiary-dim": "#17a8ec",
+                "on-tertiary-container": "#003047",
+                "on-secondary": "#33005b",
+                "tertiary-fixed-dim": "#25adf1",
+                "on-error-container": "#ffb2b9",
+                "outline": "#767576",
+                "secondary-dim": "#9c48ea",
+                "tertiary": "#61c2ff",
+                "on-secondary-container": "#e9cdff",
+                "inverse-on-surface": "#565556",
+                "surface-dim": "#0e0e0f"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "fontFamily": {
+                "headline": ["Inter"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #0e0e0f; color: #ffffff; }
+        .glass-card {
+            background: rgba(38, 38, 39, 0.4);
+            backdrop-filter: blur(20px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ghost-border {
+            border: 1px solid rgba(72, 72, 73, 0.15);
+        }
+        .gradient-button {
+            background: linear-gradient(135deg, #a3a6ff 0%, #c180ff 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- SideNavBar Shell -->
+<aside class="h-screen w-64 fixed left-0 top-0 flex flex-col bg-slate-900/40 backdrop-blur-3xl border-r border-white/15 shadow-[0_20px_40px_rgba(0,0,0,0.4)] z-50">
+<div class="flex flex-col h-full py-8 px-4">
+<!-- Brand Header -->
+<div class="mb-10 px-2">
+<h1 class="text-xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-indigo-300 to-purple-400">Obsidian Dispatch</h1>
+<p class="text-xs text-slate-500 font-medium tracking-wide uppercase mt-1">Almaty Central Hub</p>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-1 space-y-1">
+<a class="flex items-center px-4 py-3 rounded-xl text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-all duration-300 font-inter tracking-tight font-medium text-sm" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="dashboard_monitor">dashboard</span>
+                    Monitoring
+                </a>
+<a class="flex items-center px-4 py-3 rounded-xl text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-all duration-300 font-inter tracking-tight font-medium text-sm" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="steering_wheel">steering_wheel_heat</span>
+                    Drivers
+                </a>
+<a class="flex items-center px-4 py-3 rounded-xl text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-all duration-300 font-inter tracking-tight font-medium text-sm" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="local_taxi">local_taxi</span>
+                    Orders
+                </a>
+<a class="flex items-center px-4 py-3 rounded-xl text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-all duration-300 font-inter tracking-tight font-medium text-sm" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="bar_chart">bar_chart</span>
+                    Reports
+                </a>
+<!-- Active Item: Tariffs -->
+<a class="flex items-center px-4 py-3 rounded-xl bg-indigo-500/10 text-indigo-300 border-r-2 border-indigo-400 font-inter tracking-tight font-medium text-sm transition-all duration-300" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="payments">payments</span>
+                    Tariffs
+                </a>
+</nav>
+<!-- CTA -->
+<div class="mt-6 px-2">
+<button class="w-full py-3 rounded-full gradient-button text-on-primary-fixed font-bold text-sm shadow-lg scale-98 active:scale-95 transition-transform">
+                    New Dispatch
+                </button>
+</div>
+<!-- Footer Nav -->
+<div class="mt-auto space-y-1 pt-6 border-t border-white/10">
+<a class="flex items-center px-4 py-2 rounded-xl text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-all duration-300 font-inter tracking-tight font-medium text-sm" href="#">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="settings">settings</span>
+                    Settings
+                </a>
+<a class="flex items-center px-4 py-2 rounded-xl text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-all duration-300 font-inter tracking-tight font-medium text-sm" href="#">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="help_center">help_center</span>
+                    Support
+                </a>
+</div>
+</div>
+</aside>
+<!-- TopAppBar Shell -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 z-40 bg-[#0e0e0f]/80 backdrop-blur-xl border-b border-white/5">
+<div class="flex items-center justify-between px-8 w-full h-full">
+<!-- Search Focus -->
+<div class="flex-1 max-w-xl">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-indigo-400 transition-colors">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 text-sm text-on-surface focus:ring-1 focus:ring-indigo-500/30 transition-all" placeholder="Поиск зон или тарифов..." type="text"/>
+</div>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center space-x-6">
+<button class="text-slate-400 hover:text-indigo-300 transition-all">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-slate-400 hover:text-indigo-300 transition-all">
+<span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+</button>
+<div class="flex items-center space-x-3 pl-4 border-l border-white/10">
+<div class="text-right">
+<p class="text-sm font-bold text-on-surface">Admin Dispatcher</p>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest">Master Control</p>
+</div>
+<div class="w-9 h-9 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border border-white/10">
+<img alt="Dispatcher Profile" class="w-full h-full object-cover" data-alt="professional male portrait with neutral expression, high-end studio lighting, minimalist dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsxI6nxWkx45QKWerAVGMqyNzHrHC8vvc0iniC7OziQvwpYm3cNMnKn7T0g1J1UQv0-eqtzUAQ3olDC4NHd7Hk0FlK8DnA6I_mGhUjGDjMveObcrhNoKddsdKpSiZQvCJxzhfffDsdQqWgyXvFp8IgxSW3xGpaSNQBzaxgL4kUCWNj9RX-J4CJxjGI98zd0YRtkW75easreAXE7SR7deHyxuSKP7fHJUWhJmHyFWYow_mBx4FOE_Gpfe8A0qv4Z0cCR_u5997kWJk"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 px-8 pb-12 min-h-screen relative">
+<!-- Header Section -->
+<div class="mb-10 flex justify-between items-end">
+<div class="space-y-1">
+<h2 class="text-4xl font-extrabold tracking-tight text-on-surface">Управление Тарифами</h2>
+<p class="text-on-surface-variant text-sm font-medium">Конфигурация ценовых моделей и территориальных коэффициентов</p>
+</div>
+<div class="flex space-x-3">
+<button class="px-6 py-2.5 rounded-full glass-card ghost-border text-on-surface text-sm font-semibold hover:bg-white/10 transition-all">
+                    Сбросить до стандартных
+                </button>
+<button class="px-8 py-2.5 rounded-full gradient-button text-on-primary-fixed text-sm font-bold shadow-xl shadow-primary/20 hover:scale-[1.02] transition-transform">
+                    Сохранить изменения
+                </button>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-8">
+<!-- Tariff Classes Grid -->
+<div class="col-span-12 lg:col-span-7 space-y-6">
+<!-- Tariff Card: Economy -->
+<div class="glass-card ghost-border rounded-3xl p-6 transition-all hover:bg-white/[0.07]">
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center space-x-4">
+<div class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="commute">commute</span>
+</div>
+<div>
+<h3 class="text-xl font-bold tracking-tight">Эконом</h3>
+<p class="text-xs text-on-surface-variant font-medium uppercase tracking-wider">Базовый доступ</p>
+</div>
+</div>
+<div class="flex items-center space-x-2">
+<span class="px-3 py-1 rounded-full bg-green-500/10 text-green-400 text-[10px] font-bold border border-green-500/20">АКТИВЕН</span>
+<button class="p-2 text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-6">
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest pl-1">Базовая подача</label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest/50 border-b border-outline-variant focus:border-primary transition-colors text-lg font-bold py-2 px-1 focus:ring-0" type="text" value="450"/>
+<span class="absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm font-medium">₸</span>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest pl-1">Цена за км</label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest/50 border-b border-outline-variant focus:border-primary transition-colors text-lg font-bold py-2 px-1 focus:ring-0" type="text" value="85"/>
+<span class="absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm font-medium">₸</span>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest pl-1">Час пик (коеф)</label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest/50 border-b border-outline-variant focus:border-primary transition-colors text-lg font-bold py-2 px-1 focus:ring-0" type="text" value="1.25"/>
+<span class="absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm font-medium">x</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Tariff Card: Comfort -->
+<div class="glass-card ghost-border rounded-3xl p-6 transition-all hover:bg-white/[0.07]">
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center space-x-4">
+<div class="w-12 h-12 rounded-2xl bg-secondary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" data-icon="airport_shuttle">airport_shuttle</span>
+</div>
+<div>
+<h3 class="text-xl font-bold tracking-tight">Комфорт</h3>
+<p class="text-xs text-on-surface-variant font-medium uppercase tracking-wider">Оптимальный выбор</p>
+</div>
+</div>
+<div class="flex items-center space-x-2">
+<span class="px-3 py-1 rounded-full bg-green-500/10 text-green-400 text-[10px] font-bold border border-green-500/20">АКТИВЕН</span>
+<button class="p-2 text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-6">
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest pl-1">Базовая подача</label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest/50 border-b border-outline-variant focus:border-primary transition-colors text-lg font-bold py-2 px-1 focus:ring-0" type="text" value="700"/>
+<span class="absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm font-medium">₸</span>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest pl-1">Цена за км</label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest/50 border-b border-outline-variant focus:border-primary transition-colors text-lg font-bold py-2 px-1 focus:ring-0" type="text" value="120"/>
+<span class="absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm font-medium">₸</span>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest pl-1">Час пик (коеф)</label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest/50 border-b border-outline-variant focus:border-primary transition-colors text-lg font-bold py-2 px-1 focus:ring-0" type="text" value="1.40"/>
+<span class="absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm font-medium">x</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Tariff Card: Business -->
+<div class="glass-card ghost-border rounded-3xl p-6 transition-all border-l-4 border-l-secondary-dim hover:bg-white/[0.07]">
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center space-x-4">
+<div class="w-12 h-12 rounded-2xl bg-secondary-dim/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary-dim" data-icon="directions_car">directions_car</span>
+</div>
+<div>
+<h3 class="text-xl font-bold tracking-tight text-secondary-fixed-dim">Бизнес</h3>
+<p class="text-xs text-on-surface-variant font-medium uppercase tracking-wider">Представительский класс</p>
+</div>
+</div>
+<div class="flex items-center space-x-2">
+<span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-bold border border-primary/20">ВНИМАНИЕ: ВЫСОКИЙ СПРОС</span>
+<button class="p-2 text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-6">
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest pl-1">Базовая подача</label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest/50 border-b border-outline-variant focus:border-primary transition-colors text-lg font-bold py-2 px-1 focus:ring-0" type="text" value="1500"/>
+<span class="absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm font-medium">₸</span>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest pl-1">Цена за км</label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest/50 border-b border-outline-variant focus:border-primary transition-colors text-lg font-bold py-2 px-1 focus:ring-0" type="text" value="250"/>
+<span class="absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm font-medium">₸</span>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest pl-1">Час пик (коеф)</label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest/50 border-b border-outline-variant focus:border-primary transition-colors text-lg font-bold py-2 px-1 focus:ring-0" type="text" value="1.85"/>
+<span class="absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm font-medium">x</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Tariff Card: Elite -->
+<div class="glass-card ghost-border rounded-3xl p-6 transition-all bg-gradient-to-br from-surface-variant/40 to-indigo-950/20 hover:from-surface-variant/60">
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center space-x-4">
+<div class="w-12 h-12 rounded-2xl bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-fixed" data-icon="star">star</span>
+</div>
+<div>
+<h3 class="text-xl font-bold tracking-tight text-primary-fixed">Элит</h3>
+<p class="text-xs text-on-surface-variant font-medium uppercase tracking-wider">Максимальная роскошь</p>
+</div>
+</div>
+<div class="flex items-center space-x-2">
+<span class="px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-[10px] font-bold border border-indigo-400/30">ПРЕМИУМ РЕЖИМ</span>
+<button class="p-2 text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-6">
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest pl-1">Базовая подача</label>
+<div class="relative">
+<input class="w-full bg-transparent border-b border-primary/30 focus:border-primary transition-colors text-lg font-bold py-2 px-1 focus:ring-0" type="text" value="3500"/>
+<span class="absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm font-medium">₸</span>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest pl-1">Цена за км</label>
+<div class="relative">
+<input class="w-full bg-transparent border-b border-primary/30 focus:border-primary transition-colors text-lg font-bold py-2 px-1 focus:ring-0" type="text" value="600"/>
+<span class="absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm font-medium">₸</span>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest pl-1">Час пик (коеф)</label>
+<div class="relative">
+<input class="w-full bg-transparent border-b border-primary/30 focus:border-primary transition-colors text-lg font-bold py-2 px-1 focus:ring-0" type="text" value="2.50"/>
+<span class="absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm font-medium">x</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Map & Zones Sidebar -->
+<div class="col-span-12 lg:col-span-5 space-y-8">
+<!-- Map Overlay Section -->
+<div class="glass-card ghost-border rounded-[2rem] overflow-hidden flex flex-col h-[600px] shadow-2xl">
+<div class="relative flex-1">
+<!-- Map Placeholder -->
+<div class="absolute inset-0 bg-surface-container-low">
+<img alt="Dark stylized digital map of Almaty city with neon route highlights and glowing activity zones" class="w-full h-full object-cover opacity-60 grayscale brightness-75" data-location="Almaty" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTU5yKkC_ydE_-2jEN1wnfRWMqHPGbWc-h0jYkS9pQxe9S09zpBpwO8BO3KhjIQDai7nJugzbHkT9NlKLIVImneFu1D7RjnfGU3b-s5bcQ_26avU5tOlfKrwJqcIErnSsJSHRPa47k2NK00_jMsK32szOhJf3XgTUWJeUh4CsR1a9NU_3Wnj1c_xnS4dQxbH5QB6D1gQ9YCTopWeEXsDGRRo8H4eo1JnkbLDSbbg9WCUWDzCAc2WL2ZUA6TRpbekSCRkALD0c5Ov0"/>
+<!-- Neon Service Zone Overlays -->
+<div class="absolute top-1/4 left-1/3 w-48 h-48 bg-primary/20 rounded-full blur-3xl border-2 border-primary/40"></div>
+<div class="absolute bottom-1/4 right-1/4 w-32 h-32 bg-secondary/20 rounded-full blur-2xl border-2 border-secondary/40"></div>
+<!-- Map UI Controls -->
+<div class="absolute top-6 right-6 flex flex-col space-y-2">
+<button class="w-10 h-10 rounded-xl glass-card ghost-border flex items-center justify-center text-on-surface hover:bg-white/10 transition-all shadow-lg">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+<button class="w-10 h-10 rounded-xl glass-card ghost-border flex items-center justify-center text-on-surface hover:bg-white/10 transition-all shadow-lg">
+<span class="material-symbols-outlined" data-icon="remove">remove</span>
+</button>
+</div>
+<div class="absolute bottom-6 left-6 right-6">
+<div class="glass-card ghost-border rounded-2xl p-4 flex items-center justify-between border-l-4 border-l-primary shadow-xl">
+<div class="flex items-center space-x-3">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface">Активная Зона: Центр</span>
+</div>
+<span class="text-xs font-medium text-primary tracking-tighter">+25% к тарифу</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-6 bg-surface-container-highest/60">
+<div class="flex items-center justify-between mb-4">
+<h4 class="font-bold text-lg">Управление Зонами</h4>
+<button class="text-xs font-bold text-primary hover:underline transition-all">Добавить зону</button>
+</div>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low hover:bg-surface-container transition-all">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="pentagon">pentagon</span>
+</div>
+<span class="text-sm font-medium">Золотой Квадрат</span>
+</div>
+<span class="text-sm font-bold text-on-surface-variant">x1.5</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low hover:bg-surface-container transition-all">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-lg bg-secondary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="circle">circle</span>
+</div>
+<span class="text-sm font-medium">Аэропорт</span>
+</div>
+<span class="text-sm font-bold text-on-surface-variant">+1200 ₸</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Peak Hour Schedule (Mini Editor) -->
+<div class="glass-card ghost-border rounded-[2rem] p-8 space-y-6">
+<div class="flex items-center justify-between">
+<h4 class="font-bold text-lg">График коэфициентов</h4>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">calendar_today</span>
+</div>
+<div class="grid grid-cols-7 gap-2 h-32 items-end">
+<div class="bg-surface-container rounded-t-lg h-2/3 flex flex-col items-center justify-end pb-2 group hover:bg-primary/20 transition-all cursor-pointer">
+<span class="text-[8px] font-bold text-on-surface-variant group-hover:text-primary mb-1">ПН</span>
+</div>
+<div class="bg-surface-container rounded-t-lg h-1/2 flex flex-col items-center justify-end pb-2 group hover:bg-primary/20 transition-all cursor-pointer">
+<span class="text-[8px] font-bold text-on-surface-variant group-hover:text-primary mb-1">ВТ</span>
+</div>
+<div class="bg-surface-container rounded-t-lg h-3/4 flex flex-col items-center justify-end pb-2 group hover:bg-primary/20 transition-all cursor-pointer">
+<span class="text-[8px] font-bold text-on-surface-variant group-hover:text-primary mb-1">СР</span>
+</div>
+<div class="bg-primary/40 border-t-2 border-primary rounded-t-lg h-full flex flex-col items-center justify-end pb-2 group cursor-pointer">
+<span class="text-[8px] font-bold text-primary mb-1">ЧТ</span>
+</div>
+<div class="bg-surface-container rounded-t-lg h-2/3 flex flex-col items-center justify-end pb-2 group hover:bg-primary/20 transition-all cursor-pointer">
+<span class="text-[8px] font-bold text-on-surface-variant group-hover:text-primary mb-1">ПТ</span>
+</div>
+<div class="bg-secondary/40 border-t-2 border-secondary rounded-t-lg h-5/6 flex flex-col items-center justify-end pb-2 group cursor-pointer">
+<span class="text-[8px] font-bold text-secondary mb-1">СБ</span>
+</div>
+<div class="bg-surface-container rounded-t-lg h-1/2 flex flex-col items-center justify-end pb-2 group hover:bg-primary/20 transition-all cursor-pointer">
+<span class="text-[8px] font-bold text-on-surface-variant group-hover:text-primary mb-1">ВС</span>
+</div>
+</div>
+<div class="flex space-x-4 pt-4 border-t border-white/5">
+<div class="flex-1">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Текущий коэф.</p>
+<p class="text-2xl font-black text-primary">x1.45</p>
+</div>
+<div class="flex-1 border-l border-white/10 pl-4">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Авто-настройка</p>
+<p class="text-sm font-bold text-green-400">Включена</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

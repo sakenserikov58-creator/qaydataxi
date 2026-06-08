@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container": "#1a191b",
+                    "outline-variant": "#484849",
+                    "on-tertiary-fixed-variant": "#003d5a",
+                    "on-secondary-fixed": "#4f0089",
+                    "on-error": "#490013",
+                    "surface-container-low": "#131314",
+                    "on-surface-variant": "#adaaab",
+                    "error-container": "#a70138",
+                    "on-primary": "#0f00a4",
+                    "on-primary-container": "#0a0081",
+                    "on-surface": "#ffffff",
+                    "primary-fixed": "#9396ff",
+                    "on-secondary-fixed-variant": "#7511c3",
+                    "on-background": "#ffffff",
+                    "background": "#0e0e0f",
+                    "on-tertiary-fixed": "#001a29",
+                    "surface-bright": "#2c2c2d",
+                    "on-primary-fixed-variant": "#0e009d",
+                    "primary-dim": "#6063ee",
+                    "surface-container-lowest": "#000000",
+                    "primary": "#a3a6ff",
+                    "tertiary-fixed": "#40bbff",
+                    "primary-container": "#9396ff",
+                    "tertiary-container": "#34b5fa",
+                    "error": "#ff6e84",
+                    "secondary-container": "#6f00be",
+                    "surface-container-highest": "#262627",
+                    "surface-variant": "#262627",
+                    "surface-tint": "#a3a6ff",
+                    "on-primary-fixed": "#000000",
+                    "error-dim": "#d73357",
+                    "inverse-surface": "#fcf8f9",
+                    "surface": "#0e0e0f",
+                    "secondary": "#c180ff",
+                    "on-tertiary": "#003b56",
+                    "surface-container-high": "#201f21",
+                    "secondary-fixed": "#e5c6ff",
+                    "inverse-primary": "#494bd7",
+                    "primary-fixed-dim": "#8387ff",
+                    "secondary-fixed-dim": "#dbb4ff",
+                    "tertiary-dim": "#17a8ec",
+                    "on-tertiary-container": "#003047",
+                    "on-secondary": "#33005b",
+                    "tertiary-fixed-dim": "#25adf1",
+                    "on-error-container": "#ffb2b9",
+                    "outline": "#767576",
+                    "secondary-dim": "#9c48ea",
+                    "tertiary": "#61c2ff",
+                    "on-secondary-container": "#e9cdff",
+                    "inverse-on-surface": "#565556",
+                    "surface-dim": "#0e0e0f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(38, 38, 39, 0.4);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+        }
+        .ghost-border {
+            border-bottom: 1px solid rgba(72, 72, 73, 0.15);
+        }
+        .ghost-border:focus-within {
+            border-bottom: 1px solid #a3a6ff;
+            box-shadow: 0 4px 12px -4px rgba(163, 166, 255, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body min-h-screen">
+<!-- SideNavBar -->
+<aside class="bg-slate-900/40 backdrop-blur-3xl h-screen w-64 fixed left-0 top-0 flex flex-col border-r border-white/15 shadow-[0_20px_40px_rgba(0,0,0,0.4)] z-50">
+<div class="flex flex-col h-full py-8 px-4">
+<div class="mb-10 px-2">
+<h1 class="text-xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-indigo-300 to-purple-400">Obsidian Dispatch</h1>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest mt-1">Almaty Central Hub</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-all duration-300 flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium" href="#">
+<span class="material-symbols-outlined text-lg">dashboard</span>
+                    Monitoring
+                </a>
+<a class="bg-indigo-500/10 text-indigo-300 border-r-2 border-indigo-400 flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium" href="#">
+<span class="material-symbols-outlined text-lg">steering_wheel_heat</span>
+                    Drivers
+                </a>
+<a class="text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-all duration-300 flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium" href="#">
+<span class="material-symbols-outlined text-lg">local_taxi</span>
+                    Orders
+                </a>
+<a class="text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-all duration-300 flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium" href="#">
+<span class="material-symbols-outlined text-lg">bar_chart</span>
+                    Reports
+                </a>
+<a class="text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-all duration-300 flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium" href="#">
+<span class="material-symbols-outlined text-lg">payments</span>
+                    Tariffs
+                </a>
+</nav>
+<div class="mt-auto pt-6 border-t border-white/5 space-y-1">
+<a class="text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-all duration-300 flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium" href="#">
+<span class="material-symbols-outlined text-lg">settings</span>
+                    Settings
+                </a>
+<a class="text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-all duration-300 flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium" href="#">
+<span class="material-symbols-outlined text-lg">help_center</span>
+                    Support
+                </a>
+<div class="flex items-center gap-3 mt-6 px-3 py-3 bg-white/5 rounded-2xl">
+<img alt="Dispatcher Profile" class="w-10 h-10 rounded-full object-cover border border-white/10" data-alt="Professional dispatcher profile headshot, mature man with headset, corporate dark lighting, soft rim light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrioEI9OErkQ11g4L03dJkihl3LD7Cd-SpFIZnRG41x8vlMgCsWpfcGZrHNQsrXETX_CQANnSdw0NByMNhLbpOBme6tABJb7q91p9Wq74cl6tSAZT1FYvEfm8m0uVfkijf91NVxbAMgGxlvUkdzhdBKHUAmPrI_vshNuNi9rNECOepHmIg0i-jWByMEmjoi3ZvjS4wVFv4wzspepf77j6q9GEyaforjqAGRdN_S4H2FA4jPg6UnugcuUOrlKCxIi6cZzw_duceBmU"/>
+<div class="overflow-hidden">
+<p class="text-sm font-bold text-on-surface truncate">Alexei K.</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Senior Dispatcher</p>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 z-40 bg-[#0e0e0f]/80 backdrop-blur-xl border-b border-white/5">
+<div class="flex items-center justify-between px-8 w-full h-full">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl group-focus-within:text-primary transition-colors">search</span>
+<input class="bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 text-sm w-full focus:ring-1 focus:ring-indigo-500/30 transition-all placeholder:text-on-surface-variant" placeholder="Поиск водителей, заказов..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-slate-400 hover:text-indigo-300 transition-all relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<button class="text-slate-400 hover:text-indigo-300 transition-all">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<button class="text-slate-400 hover:text-indigo-300 transition-all">
+<span class="material-symbols-outlined text-3xl">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-64 pt-24 px-8 pb-12 min-h-screen">
+<div class="max-w-5xl mx-auto">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 text-xs text-on-surface-variant mb-6">
+<span>Drivers</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span>Almaty Fleet</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-on-surface">Редактирование данных водителя</span>
+</nav>
+<header class="mb-10">
+<h2 class="text-3xl font-extrabold tracking-tight mb-2">Редактирование данных водителя</h2>
+<p class="text-on-surface-variant">Обновите личную информацию и данные транспортного средства для водителя #7742</p>
+</header>
+<form class="space-y-8">
+<!-- Profile Section -->
+<section class="glass-panel rounded-3xl p-8 relative overflow-hidden border border-white/5">
+<div class="absolute top-0 right-0 p-8 opacity-10">
+<span class="material-symbols-outlined text-8xl">person</span>
+</div>
+<h3 class="text-xl font-bold mb-8 text-primary flex items-center gap-2">
+<span class="material-symbols-outlined">badge</span>
+                        Личные данные
+                    </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+<div class="space-y-1 group">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1">Полное имя</label>
+<input class="w-full bg-transparent ghost-border py-3 px-1 text-on-surface placeholder:text-on-surface-variant focus:outline-none border-t-0 border-x-0 border-b-1 transition-all" type="text" value="Данияр Смагулов"/>
+</div>
+<div class="space-y-1 group">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1">Номер телефона</label>
+<input class="w-full bg-transparent ghost-border py-3 px-1 text-on-surface placeholder:text-on-surface-variant focus:outline-none border-t-0 border-x-0 border-b-1 transition-all" type="tel" value="+7 (707) 455-22-11"/>
+</div>
+<div class="space-y-1 group">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1">Электронная почта</label>
+<input class="w-full bg-transparent ghost-border py-3 px-1 text-on-surface placeholder:text-on-surface-variant focus:outline-none border-t-0 border-x-0 border-b-1 transition-all" type="email" value="d.smagulov@obsidian.kz"/>
+</div>
+<div class="space-y-1 group">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1">Город</label>
+<select class="w-full bg-transparent ghost-border py-3 px-1 text-on-surface focus:outline-none border-t-0 border-x-0 border-b-1 transition-all appearance-none">
+<option class="bg-surface-container">Алматы</option>
+<option class="bg-surface-container">Астана</option>
+<option class="bg-surface-container">Шымкент</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Vehicle Section -->
+<section class="glass-panel rounded-3xl p-8 border border-white/5">
+<h3 class="text-xl font-bold mb-8 text-secondary flex items-center gap-2">
+<span class="material-symbols-outlined">directions_car</span>
+                        Транспортное средство
+                    </h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+<div class="space-y-1 group">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1">Марка и модель</label>
+<input class="w-full bg-transparent ghost-border py-3 px-1 text-on-surface focus:outline-none border-t-0 border-x-0 border-b-1 transition-all" type="text" value="Toyota Camry"/>
+</div>
+<div class="space-y-1 group">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1">Гос. номер</label>
+<input class="w-full bg-transparent ghost-border py-3 px-1 text-on-surface focus:outline-none border-t-0 border-x-0 border-b-1 transition-all" type="text" value="777 AAA 02"/>
+</div>
+<div class="space-y-1 group">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1">Цвет</label>
+<div class="flex items-center gap-3 ghost-border py-2 px-1">
+<div class="w-6 h-6 rounded-full bg-surface-bright border border-white/10"></div>
+<input class="bg-transparent border-none p-0 text-on-surface focus:ring-0" type="text" value="Черный металлик"/>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-4">
+<div class="p-6 rounded-2xl bg-surface-container-lowest border border-white/5 flex items-center gap-6">
+<div class="w-24 h-16 rounded-lg bg-surface-container-highest overflow-hidden flex items-center justify-center relative group">
+<img class="w-full h-full object-cover" data-alt="Sleek black executive sedan car parked in a modern urban garage with cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnaYdIqKb2U4zVfWikDJgmUjIiQ3Q01CnRz_NHDbfEbaGsHTp09SwPwTrI4UbRupTbDo8TUhZp5wXOeylQcJPJ_9A0C0JMvYLP3jdrNG4P1H1AlYxyeXei4uYSLqhrvlr8xKX71kiumpXhlyVpoE-mZYEdqeD9QbUtXaZ2jfj252sqQaIUghSBklykagPKAm0Q77trxREV7Xk7aGDvtcF_wL7AFGSmFPwLX32Jt4IAEwryekvTIptyCtRUcMoDfFfx_4tnjTpjPnw"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer">
+<span class="material-symbols-outlined text-white text-sm">edit</span>
+</div>
+</div>
+<div>
+<h4 class="text-sm font-bold">Фото автомобиля</h4>
+<p class="text-xs text-on-surface-variant mt-1">Вид спереди, 45 градусов. Обновлено вчера.</p>
+</div>
+</div>
+<div class="p-6 rounded-2xl bg-surface-container-lowest border border-white/5 flex items-center gap-6">
+<div class="w-24 h-16 rounded-lg bg-surface-container-highest border-2 border-dashed border-outline-variant flex items-center justify-center cursor-pointer hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">add_a_photo</span>
+</div>
+<div>
+<h4 class="text-sm font-bold">Салон</h4>
+<p class="text-xs text-on-surface-variant mt-1">Добавьте фото интерьера для бизнес-класса.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Documents Section -->
+<section class="glass-panel rounded-3xl p-8 border border-white/5">
+<h3 class="text-xl font-bold mb-8 text-tertiary flex items-center gap-2">
+<span class="material-symbols-outlined">description</span>
+                        Документы
+                    </h3>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<div class="flex items-center justify-between p-4 rounded-xl bg-surface-container-high border border-white/5">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">license</span>
+</div>
+<div>
+<p class="text-sm font-medium">Водительское удостоверение</p>
+<p class="text-[10px] text-on-surface-variant">Срок до: 12.05.2028</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 text-on-surface-variant hover:text-on-surface" type="button"><span class="material-symbols-outlined text-lg">visibility</span></button>
+<button class="p-2 text-on-surface-variant hover:text-on-surface" type="button"><span class="material-symbols-outlined text-lg">upload</span></button>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 rounded-xl bg-surface-container-high border border-white/5">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">car_tag</span>
+</div>
+<div>
+<p class="text-sm font-medium">Техпаспорт (СРТС)</p>
+<p class="text-[10px] text-on-surface-variant">Срок до: 20.09.2025</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 text-on-surface-variant hover:text-on-surface" type="button"><span class="material-symbols-outlined text-lg">visibility</span></button>
+<button class="p-2 text-on-surface-variant hover:text-on-surface" type="button"><span class="material-symbols-outlined text-lg">upload</span></button>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 rounded-xl bg-error-container/5 border border-error/20">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-error/10 flex items-center justify-center text-error">
+<span class="material-symbols-outlined">medical_services</span>
+</div>
+<div>
+<p class="text-sm font-medium">Мед. справка 086-У</p>
+<p class="text-[10px] text-error font-bold uppercase tracking-widest">Просрочено</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-1 bg-error text-on-error rounded-full text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-transform" type="button">Загрузить</button>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 rounded-xl border border-dashed border-outline-variant bg-transparent opacity-60 hover:opacity-100 transition-opacity cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-on-surface-variant/10 flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">add</span>
+</div>
+<div>
+<p class="text-sm font-medium">Новый документ</p>
+<p class="text-[10px] text-on-surface-variant">Страховка, патент и др.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer Actions -->
+<footer class="flex items-center justify-between pt-10 border-t border-white/5">
+<button class="px-8 py-3 rounded-full text-on-surface-variant hover:text-on-surface bg-surface-variant/20 hover:bg-surface-variant/40 transition-all font-bold text-sm tracking-tight scale-98 active:scale-95" type="button">Отмена</button>
+<div class="flex gap-4">
+<button class="px-10 py-3 rounded-full bg-gradient-to-br from-primary to-secondary text-on-primary-fixed font-black text-sm tracking-tight shadow-[0_10px_20px_rgba(163,166,255,0.2)] hover:scale-[1.02] active:scale-95 transition-all" type="button">
+                            Сохранить изменения
+                        </button>
+</div>
+</footer>
+</form>
+</div>
+</main>
+<!-- Background Decorative Elements -->
+<div class="fixed top-[-10%] right-[-10%] w-[50%] h-[50%] bg-primary/5 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+<div class="fixed bottom-[-10%] left-[-5%] w-[40%] h-[40%] bg-secondary/5 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+</body></html>

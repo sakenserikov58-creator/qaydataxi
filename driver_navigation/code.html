@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#2c2c2d",
+                        "secondary-dim": "#9c48ea",
+                        "surface-dim": "#0e0e0f",
+                        "on-secondary-fixed": "#4f0089",
+                        "tertiary-container": "#34b5fa",
+                        "tertiary-fixed": "#40bbff",
+                        "outline-variant": "#484849",
+                        "on-secondary-fixed-variant": "#7511c3",
+                        "surface-container-lowest": "#000000",
+                        "on-tertiary-container": "#003047",
+                        "tertiary-dim": "#17a8ec",
+                        "on-tertiary-fixed-variant": "#003d5a",
+                        "on-error-container": "#ffb2b9",
+                        "surface": "#0e0e0f",
+                        "on-primary-fixed-variant": "#0e009d",
+                        "on-tertiary": "#003b56",
+                        "inverse-surface": "#fcf8f9",
+                        "on-primary-fixed": "#000000",
+                        "on-secondary-container": "#e9cdff",
+                        "tertiary-fixed-dim": "#25adf1",
+                        "inverse-on-surface": "#565556",
+                        "surface-tint": "#a3a6ff",
+                        "background": "#0e0e0f",
+                        "surface-container-low": "#131314",
+                        "secondary-fixed": "#e5c6ff",
+                        "on-background": "#ffffff",
+                        "primary-fixed": "#9396ff",
+                        "on-secondary": "#33005b",
+                        "on-error": "#490013",
+                        "primary-container": "#9396ff",
+                        "primary-fixed-dim": "#8387ff",
+                        "secondary-container": "#6f00be",
+                        "on-primary-container": "#0a0081",
+                        "surface-container-high": "#201f21",
+                        "error": "#ff6e84",
+                        "inverse-primary": "#494bd7",
+                        "surface-variant": "#262627",
+                        "on-tertiary-fixed": "#001a29",
+                        "secondary": "#c180ff",
+                        "on-surface-variant": "#adaaab",
+                        "surface-container-highest": "#262627",
+                        "primary": "#a3a6ff",
+                        "surface-container": "#1a191b",
+                        "on-primary": "#0f00a4",
+                        "tertiary": "#61c2ff",
+                        "error-dim": "#d73357",
+                        "outline": "#767576",
+                        "primary-dim": "#6063ee",
+                        "on-surface": "#ffffff",
+                        "secondary-fixed-dim": "#dbb4ff",
+                        "error-container": "#a70138"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #0e0e0f; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .map-gradient-overlay {
+            background: linear-gradient(to bottom, rgba(14,14,15,0.8) 0%, rgba(14,14,15,0) 25%, rgba(14,14,15,0) 75%, rgba(14,14,15,0.9) 100%);
+        }
+        .glass-panel {
+            background: rgba(38, 38, 39, 0.4);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface antialiased overflow-hidden h-screen w-screen">
+<!-- Background Map Layer -->
+<div class="fixed inset-0 z-0">
+<img class="w-full h-full object-cover opacity-60 grayscale contrast-125" data-alt="Dark stylized night city map of Almaty with glowing purple and blue route lines winding through geometric urban blocks" data-location="Almaty" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRtkO3za6bQ0AXO2r8kJfyHTQ9Mk2UuqcPveaAGv5ag96RboHfaSxwwHBYpTMqP12vpLl6ZhGuNwjw43HP6EIMweFKG3aJxtRY6ConGnu0zYXOxtRWyHUDmbo06CL5OKQJZTgw7U2tseoOeGZ2c0oczm_Odc3HdWgYNhlkHS8bxKUJgltZsFJ42T0KsUvXPvNzPfowuZ3wjbV44Hmn-4vKHDdUNoJX7unAa5Vt0yVndegFIhR6ALKUvPBpJlaFAPNH8nhSZX6w3MI"/>
+<div class="absolute inset-0 map-gradient-overlay pointer-events-none"></div>
+</div>
+<!-- Navigation Header (Shared Component: TopAppBar) -->
+<header class="fixed top-0 w-full z-50 bg-[#0e0e0f]/60 backdrop-blur-3xl flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-zinc-800/40 active:scale-95 transition-all duration-200">
+<span class="material-symbols-outlined text-indigo-400">menu</span>
+</button>
+<div class="flex flex-col">
+<span class="font-['Inter'] font-semibold tracking-tight text-zinc-100 text-sm opacity-60">Маршрут активен</span>
+<h1 class="text-xl font-bold tracking-tighter text-zinc-50 font-['Inter']">пр. Аль-Фараби, 77</h1>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="bg-surface-container-highest/60 px-4 py-2 rounded-full border border-outline-variant/15 flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<span class="text-sm font-bold text-primary tracking-widest">ON AIR</span>
+</div>
+<img alt="User Profile Avatar" class="w-10 h-10 rounded-full border-2 border-indigo-400/30 object-cover" data-alt="Professional headshot of a middle-aged male driver with a friendly expression in soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeMxKq1PsYl5RSRQoBLJIIe-6tAgfWKMCUgdzjjC_ceDz7y11RxVD4B62W8x83jRaPbSv9Oogg9pmhHch9YCNLapp85-cZP2yz3HaBZZBIKQoU6bCUXHw_nLhneZf9DgcLCN05mkgNc97c7MwrPF0dsHwCjpfpmQAoZoM6xICf4nlVgDPRPRDGYixfR_UXA-_OAlncjSaLJvzd7i8MeHOtUNTkfcuv3bkYipyTBzh67Vg0aATiUKmESadmZc-IfWFcgkLXTGzB228"/>
+</div>
+</header>
+<!-- Main Navigation Canvas -->
+<main class="relative z-10 h-full w-full flex flex-col justify-between p-6 pt-24 pb-32 pointer-events-none">
+<!-- Top: Maneuver & Next Turn -->
+<div class="flex justify-between items-start pointer-events-auto">
+<div class="glass-panel rounded-[32px] p-6 w-full max-w-sm shadow-2xl border border-outline-variant/10">
+<div class="flex items-center gap-6">
+<div class="bg-primary/20 p-4 rounded-2xl flex items-center justify-center">
+<span class="material-symbols-outlined text-5xl text-primary" style="font-variation-settings: 'FILL' 1;">turn_right</span>
+</div>
+<div>
+<h2 class="text-4xl font-black tracking-tighter text-on-surface">450 м</h2>
+<p class="text-on-surface-variant font-medium text-lg leading-tight">Поворот направо на улицу Фурманова</p>
+</div>
+</div>
+</div>
+<!-- Secondary Info (Asymmetric Placement) -->
+<div class="hidden md:flex flex-col gap-4 items-end">
+<div class="glass-panel p-4 rounded-2xl border border-outline-variant/10 text-right">
+<p class="text-xs uppercase tracking-widest text-on-surface-variant mb-1">Прибытие</p>
+<p class="text-2xl font-bold text-on-surface">22:45</p>
+<p class="text-sm font-medium text-primary">12 мин · 8.4 км</p>
+</div>
+</div>
+</div>
+<!-- Center-Left: Speedometer (Floating) -->
+<div class="absolute left-6 top-1/2 -translate-y-1/2 pointer-events-auto">
+<div class="relative w-32 h-32 flex items-center justify-center">
+<svg class="absolute inset-0 w-full h-full -rotate-90">
+<circle class="text-surface-container-high" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary-dim shadow-[0_0_15px_rgba(163,166,255,0.4)]" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" stroke-dasharray="364" stroke-dashoffset="120" stroke-width="8"></circle>
+</svg>
+<div class="flex flex-col items-center">
+<span class="text-4xl font-black text-on-surface">72</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">км/ч</span>
+</div>
+<!-- Speed Limit Badge -->
+<div class="absolute -bottom-2 right-0 bg-white border-4 border-error w-10 h-10 rounded-full flex items-center justify-center">
+<span class="text-black font-black text-sm">60</span>
+</div>
+</div>
+</div>
+<!-- Bottom: Active Trip Card -->
+<div class="w-full flex justify-center pointer-events-auto">
+<div class="glass-panel rounded-[40px] p-8 w-full max-w-2xl shadow-[0_20px_60px_rgba(0,0,0,0.6)] border border-outline-variant/15">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+<!-- Trip Details -->
+<div class="col-span-2 flex flex-col gap-4">
+<div class="flex items-center gap-4">
+<div class="flex flex-col items-center gap-1">
+<div class="w-3 h-3 rounded-full bg-primary-fixed ring-4 ring-primary/20"></div>
+<div class="w-0.5 h-8 bg-gradient-to-b from-primary to-transparent opacity-30"></div>
+</div>
+<div class="flex flex-col">
+<span class="text-xs uppercase tracking-widest text-on-surface-variant font-bold">Текущий заказ</span>
+<span class="text-xl font-bold text-on-surface">ул. Тимирязева, 42</span>
+</div>
+</div>
+<div class="flex items-center gap-4 ml-7">
+<div class="px-3 py-1 bg-secondary/10 border border-secondary/20 rounded-lg">
+<span class="text-xs font-bold text-secondary uppercase tracking-tighter">Business Class</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">payments</span>
+<span class="font-bold text-on-surface">2 450 ₸</span>
+</div>
+</div>
+</div>
+<!-- CTA Actions -->
+<div class="flex flex-col gap-3">
+<button class="w-full bg-gradient-to-br from-primary to-secondary p-[2px] rounded-full active:scale-95 transition-transform">
+<div class="bg-surface-container-lowest w-full py-4 rounded-full flex items-center justify-center gap-3">
+<span class="material-symbols-outlined text-primary">chat_bubble</span>
+<span class="font-bold text-on-surface tracking-tight">Написать</span>
+</div>
+</button>
+<button class="w-full bg-gradient-to-br from-primary to-secondary py-4 rounded-full flex items-center justify-center gap-3 active:scale-95 transition-transform shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-on-primary-fixed">call</span>
+<span class="font-bold text-on-primary-fixed tracking-tight">Позвонить</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button (Top Level Only Logic - Suppressed here for Nav Focus) -->
+<!-- Navigation Bar (Shared Component: BottomNavBar) -->
+<nav class="fixed bottom-0 w-full rounded-t-[32px] z-50 pb-safe bg-[#161617]/40 backdrop-blur-2xl shadow-[0_-10px_40px_rgba(0,0,0,0.4)] flex justify-around items-center px-4 py-3 w-full">
+<a class="flex flex-col items-center justify-center text-indigo-400 bg-indigo-500/10 rounded-2xl px-6 py-2 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_taxi</span>
+<span class="font-['Inter'] text-[11px] font-medium uppercase tracking-widest mt-1">Поездка</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-500 py-2 hover:text-zinc-300 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-['Inter'] text-[11px] font-medium uppercase tracking-widest mt-1">История</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-500 py-2 hover:text-zinc-300 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Inter'] text-[11px] font-medium uppercase tracking-widest mt-1">Профиль</span>
+</a>
+</nav>
+<!-- Dynamic Indicators Layer -->
+<div class="fixed top-24 right-6 z-20 flex flex-col gap-4 pointer-events-none">
+<div class="glass-panel w-12 h-12 rounded-full flex items-center justify-center border border-outline-variant/10 shadow-xl pointer-events-auto">
+<span class="material-symbols-outlined text-on-surface">my_location</span>
+</div>
+<div class="glass-panel w-12 h-12 rounded-full flex items-center justify-center border border-outline-variant/10 shadow-xl pointer-events-auto">
+<span class="material-symbols-outlined text-on-surface">layers</span>
+</div>
+<div class="glass-panel w-12 h-12 rounded-full flex items-center justify-center border border-outline-variant/10 shadow-xl pointer-events-auto">
+<span class="material-symbols-outlined text-error">warning</span>
+</div>
+</div>
+</body></html>

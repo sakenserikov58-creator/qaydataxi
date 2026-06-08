@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#2c2c2d",
+                        "secondary-dim": "#9c48ea",
+                        "surface-dim": "#0e0e0f",
+                        "on-secondary-fixed": "#4f0089",
+                        "tertiary-container": "#34b5fa",
+                        "tertiary-fixed": "#40bbff",
+                        "outline-variant": "#484849",
+                        "on-secondary-fixed-variant": "#7511c3",
+                        "surface-container-lowest": "#000000",
+                        "on-tertiary-container": "#003047",
+                        "tertiary-dim": "#17a8ec",
+                        "on-tertiary-fixed-variant": "#003d5a",
+                        "on-error-container": "#ffb2b9",
+                        "surface": "#0e0e0f",
+                        "on-primary-fixed-variant": "#0e009d",
+                        "on-tertiary": "#003b56",
+                        "inverse-surface": "#fcf8f9",
+                        "on-primary-fixed": "#000000",
+                        "on-secondary-container": "#e9cdff",
+                        "tertiary-fixed-dim": "#25adf1",
+                        "inverse-on-surface": "#565556",
+                        "surface-tint": "#a3a6ff",
+                        "background": "#0e0e0f",
+                        "surface-container-low": "#131314",
+                        "secondary-fixed": "#e5c6ff",
+                        "on-background": "#ffffff",
+                        "primary-fixed": "#9396ff",
+                        "on-secondary": "#33005b",
+                        "on-error": "#490013",
+                        "primary-container": "#9396ff",
+                        "primary-fixed-dim": "#8387ff",
+                        "secondary-container": "#6f00be",
+                        "on-primary-container": "#0a0081",
+                        "surface-container-high": "#201f21",
+                        "error": "#ff6e84",
+                        "inverse-primary": "#494bd7",
+                        "surface-variant": "#262627",
+                        "on-tertiary-fixed": "#001a29",
+                        "secondary": "#c180ff",
+                        "on-surface-variant": "#adaaab",
+                        "surface-container-highest": "#262627",
+                        "primary": "#a3a6ff",
+                        "surface-container": "#1a191b",
+                        "on-primary": "#0f00a4",
+                        "tertiary": "#61c2ff",
+                        "error-dim": "#d73357",
+                        "outline": "#767576",
+                        "primary-dim": "#6063ee",
+                        "on-surface": "#ffffff",
+                        "secondary-fixed-dim": "#dbb4ff",
+                        "error-container": "#a70138"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .glass-card {
+            background: rgba(38, 38, 39, 0.4);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+        }
+        .glow-primary {
+            box-shadow: 0 0 20px rgba(163, 166, 255, 0.3);
+        }
+        .tonal-shift-no-border {
+            background-color: rgba(14, 14, 15, 0.6);
+            backdrop-filter: blur(32px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body selection:bg-primary/30 min-h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation Anchor -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4 tonal-shift-no-border">
+<div class="flex items-center gap-3">
+<div class="p-2 rounded-xl hover:bg-zinc-800/40 active:scale-95 transition-all duration-200 cursor-pointer">
+<span class="material-symbols-outlined text-indigo-400">menu</span>
+</div>
+<span class="text-xl font-bold tracking-tighter text-zinc-50 font-headline uppercase">Luxe</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex flex-col items-end mr-2">
+<span class="text-[10px] uppercase tracking-widest text-indigo-400 font-bold">Premium Status</span>
+<span class="text-xs text-zinc-400">Константин</span>
+</div>
+<div class="w-10 h-10 rounded-full border border-indigo-500/30 overflow-hidden active:scale-95 transition-all">
+<img alt="Driver Profile" class="w-full h-full object-cover" data-alt="Professional portrait of a middle-aged man with a friendly smile, studio lighting, dark background, premium corporate style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-ArLohaArE6GypbAOeoeIs79G0Pl-QSvYv0M-TTkzQYNfhZmW3nNDkExNEy9Sao-RzUKjBLjBR4_JhZM1lzrGYDqRuJVm3ITgiy_jF_p4an9rR3_zbv98LAySj1HfC8vWQgUpBt3OyfGzFgJznEGhN14dAI-Cwzf88TJsTlwv2u8eK3PgMg-v8L0XERMXOOzdbYLjWrrHQKHxJxhmNoBNmoFVmAUeignpIeh59zCw-e-bAHWBRRPOTc2PquaP5hf5sE3DVHfVAEQ"/>
+</div>
+</div>
+</header>
+<!-- Map Canvas (Background) -->
+<main class="relative flex-1 w-full h-full">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full grayscale-[0.8] brightness-[0.4] contrast-[1.2]">
+<img alt="Map background" class="w-full h-full object-cover" data-alt="Dark aesthetic city map of Almaty at night with neon glowing streets and minimalist layout" data-location="Almaty" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDSFAo24RUap-CtFizP5Iz0JGEov3D04USQ5nkovHn_c13NpTHCo5b5K2YSUgq9Xf9FdQy7ESWWLdzMraPNXlM4YhPHB5UJB4b0v2iOY6e44Z4U9MOjm7TJNHdOdqLMAeObkyo4KeherfuezQkNANQUorh78xjUtDDEfJnRaCT8GN1Ep3MKA4aKoanXWDd54Fr-3FFJF_lBFeGLsiZRYVRPkDvNU2DtI2kmQ4tZzYZoSLjfKtxZX055hKhdA9JUizoy2glWPVib1w"/>
+</div>
+<!-- Neon Glow Overlays -->
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+<div class="absolute inset-0 bg-radial-at-c from-primary/5 to-transparent"></div>
+</div>
+<!-- Incoming Request Overlay -->
+<div class="relative z-10 h-full w-full flex flex-col justify-end items-center p-6 pb-28 md:pb-12">
+<!-- Animated Request Pulse -->
+<div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-none">
+<div class="absolute w-32 h-32 bg-primary/20 rounded-full animate-ping"></div>
+<div class="absolute w-20 h-20 bg-primary/40 rounded-full animate-pulse"></div>
+<div class="relative z-20 w-12 h-12 bg-primary rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(163,166,255,0.6)]">
+<span class="material-symbols-outlined text-on-primary font-bold">local_taxi</span>
+</div>
+</div>
+<!-- Main Request Card -->
+<div class="glass-card w-full max-w-lg rounded-xl p-6 flex flex-col gap-6 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] border border-white/5 relative overflow-hidden">
+<!-- Glowing accent line at top -->
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-secondary to-primary opacity-50"></div>
+<!-- Header: Price & Distance -->
+<div class="flex justify-between items-start">
+<div>
+<span class="text-on-surface-variant text-[11px] uppercase tracking-widest font-bold">Новый заказ</span>
+<h1 class="text-4xl font-black text-on-surface tracking-tighter mt-1 italic">4 250 ₸</h1>
+</div>
+<div class="bg-surface-container-highest px-4 py-2 rounded-full border border-outline-variant/20 flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-sm" style="font-variation-settings: 'FILL' 1;">timer</span>
+<span class="text-on-surface font-bold text-sm">4 мин</span>
+</div>
+</div>
+<!-- Locations Bento -->
+<div class="flex flex-col gap-4">
+<div class="flex gap-4">
+<div class="flex flex-col items-center py-2">
+<div class="w-3 h-3 rounded-full bg-primary shadow-[0_0_10px_rgba(163,166,255,0.8)]"></div>
+<div class="w-px h-full bg-gradient-to-b from-primary to-secondary my-1 opacity-30"></div>
+<div class="w-3 h-3 rounded-full border-2 border-secondary"></div>
+</div>
+<div class="flex-1 space-y-4">
+<div class="flex flex-col">
+<span class="text-on-surface-variant text-[10px] uppercase tracking-widest">Откуда</span>
+<span class="text-lg font-semibold text-on-surface leading-tight mt-0.5">Аль-Фараби, 77/7</span>
+<span class="text-xs text-on-surface-variant font-medium">Esentai Tower • 1.2 км от вас</span>
+</div>
+<div class="flex flex-col">
+<span class="text-on-surface-variant text-[10px] uppercase tracking-widest">Куда</span>
+<span class="text-lg font-semibold text-on-surface leading-tight mt-0.5">Медеу, Ледовый каток</span>
+<span class="text-xs text-on-surface-variant font-medium">Ул. Горная • 12 км (15 мин)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Trip Details Metadata -->
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-surface-container-low/50 p-3 rounded-xl flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant text-lg">credit_card</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[9px] uppercase text-on-surface-variant tracking-wider">Оплата</span>
+<span class="text-xs font-bold text-on-surface">Карта • • 4402</span>
+</div>
+</div>
+<div class="bg-surface-container-low/50 p-3 rounded-xl flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant text-lg">stars</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[9px] uppercase text-on-surface-variant tracking-wider">Клиент</span>
+<span class="text-xs font-bold text-on-surface">4.98 • Бизнес</span>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex gap-4 pt-2">
+<button class="flex-1 py-5 rounded-xl text-on-surface-variant font-bold uppercase tracking-widest text-xs glass-card border border-outline-variant/10 active:scale-95 transition-transform">
+                        Отклонить
+                    </button>
+<button class="flex-[2] py-5 rounded-xl bg-gradient-to-br from-primary to-secondary text-on-primary-fixed font-black uppercase tracking-widest text-sm shadow-[0_10px_25px_rgba(163,166,255,0.4)] active:scale-95 transition-transform flex items-center justify-center gap-2">
+<span>ПРИНЯТЬ</span>
+<span class="material-symbols-outlined">trending_flat</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 w-full rounded-t-[32px] z-50 pb-safe bg-[#161617]/40 backdrop-blur-2xl flex justify-around items-center px-4 py-3 shadow-[0_-10px_40px_rgba(0,0,0,0.4)]">
+<a class="flex flex-col items-center justify-center text-indigo-400 bg-indigo-500/10 rounded-2xl px-6 py-2 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-weight="fill">local_taxi</span>
+<span class="font-['Inter'] text-[11px] font-medium uppercase tracking-widest mt-1">Поездка</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-500 py-2 hover:text-zinc-300 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-['Inter'] text-[11px] font-medium uppercase tracking-widest mt-1">История</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-500 py-2 hover:text-zinc-300 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Inter'] text-[11px] font-medium uppercase tracking-widest mt-1">Профиль</span>
+</a>
+</nav>
+<!-- Background Decoration -->
+<div class="fixed top-0 left-0 w-full h-full pointer-events-none z-[1] overflow-hidden">
+<div class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[120px]"></div>
+<div class="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] bg-secondary/10 rounded-full blur-[120px]"></div>
+</div>
+</body></html>
