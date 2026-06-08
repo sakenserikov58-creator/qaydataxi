@@ -1,5 +1,3 @@
-import 'package:animate_do/animate_do.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -10,10 +8,8 @@ import 'package:qayda_taxi_app/data/models/ride_order.dart';
 import 'package:qayda_taxi_app/data/services/auth_service.dart';
 import 'package:qayda_taxi_app/data/services/sound_service.dart';
 import 'package:qayda_taxi_app/widgets/app_map_widget.dart';
-import 'package:qayda_taxi_app/widgets/bottom_nav_bar.dart';
 import 'package:qayda_taxi_app/widgets/kaspi_payment_dialog.dart';
 
-/// RideSelectionScreen — Light Mode + реальная карта с маршрутом
 class RideSelectionScreen extends StatefulWidget {
   const RideSelectionScreen({super.key});
 
@@ -22,25 +18,27 @@ class RideSelectionScreen extends StatefulWidget {
 }
 
 class _RideSelectionScreenState extends State<RideSelectionScreen> {
-  int _selected = 1; // Комфорт по умолчанию
+  int _selected = 1;
+  final _destCtrl = TextEditingController(text: 'Esentai Tower');
+
+  @override
+  void dispose() {
+    _destCtrl.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return BlocListener<RideBloc, RideBlocState>(
       listener: (context, state) {
-        if (state is RideSearchingState) {
-          context.go('/searching');
-        }
+        if (state is RideSearchingState) context.go('/searching');
       },
       child: Scaffold(
         backgroundColor: context.colors.background,
         body: Column(children: [
-          // ── Top bar ──────────────────────────────────────────────────────
-          _TopBar(),
-          // ── Map + Content ─────────────────────────────────────────────────
+          _TopBar(destCtrl: _destCtrl),
           Expanded(
             child: Stack(children: [
-              // Карта с маршрутом А→Б
               const Positioned.fill(
                 child: AppMapWidget(
                   center: kAlmatyCenter,
@@ -50,34 +48,30 @@ class _RideSelectionScreenState extends State<RideSelectionScreen> {
                   showRoute: true,
                 ),
               ),
+              // ── Контентная панель — без animate_do, Flutter built-in ──────
               Positioned(
                 bottom: 0, left: 0, right: 0,
-                child: SlideInUp(
-                  duration: const Duration(milliseconds: 600),
+                child: TweenAnimationBuilder<double>(
+                  tween: Tween(begin: 1.0, end: 0.0),
+                  duration: const Duration(milliseconds: 380),
+                  curve: Curves.easeOut,
+                  builder: (_, t, child) =>
+                      Transform.translate(offset: Offset(0, 220 * t), child: child),
                   child: _ContentPanel(
                     selected: _selected,
                     onTariffSelect: (i) {
-                      // 💗 Тариф Pink — только для женщин
                       if (i == 4) {
                         final user = context.read<AuthService>().currentUser;
                         if (user == null || !user.isFemale) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Row(children: [
-                                const Icon(Icons.woman_rounded, color: Colors.white, size: 20),
-                                const SizedBox(width: 10),
-                                Expanded(child: Text(
-                                  'ride.pink_error'.tr(),
-                                  style: const TextStyle(fontWeight: FontWeight.w600),
-                                )),
-                              ]),
-                              backgroundColor: const Color(0xFFFF69B4),
-                              behavior: SnackBarBehavior.floating,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                              duration: const Duration(seconds: 3),
-                            ),
-                          );
-                          return; // Не меняем выбор
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: const Text('Тариф Pink — только для женщин',
+                                style: TextStyle(fontWeight: FontWeight.w600)),
+                            backgroundColor: const Color(0xFFFF69B4),
+                            behavior: SnackBarBehavior.floating,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12)),
+                          ));
+                          return;
                         }
                       }
                       SoundService.selectionHaptic();
@@ -86,21 +80,10 @@ class _RideSelectionScreenState extends State<RideSelectionScreen> {
                     },
                     onOrder: () async {
                       SoundService.mediumTap();
+                      final dest = _destCtrl.text.trim().isEmpty
+                          ? 'Esentai Tower'
+                          : _destCtrl.text.trim();
                       const prices = [1250.0, 1800.0, 3400.0, 4200.0, 1500.0];
-                      const origins = [
-                        'пр. Достык, 105',
-                        'пр. Достык, 105',
-                        'пр. Достык, 105',
-                        'пр. Достык, 105',
-                        'пр. Достык, 105',
-                      ];
-                      const dests = [
-                        'ТРЦ Mega Alma-Ata',
-                        'Esentai Tower',
-                        'ул. Фурманова, 100',
-                        'Аэропорт Алматы',
-                        'мкр. Самал-2, 111',
-                      ];
                       final tariffs = [
                         RideTariff.economy,
                         RideTariff.comfort,
@@ -109,23 +92,21 @@ class _RideSelectionScreenState extends State<RideSelectionScreen> {
                         RideTariff.pink,
                       ];
 
-                      // Final Deep Logic Check for Pink
                       if (tariffs[_selected] == RideTariff.pink) {
                         final u = context.read<AuthService>().currentUser;
                         if (u == null || !u.isFemale) return;
                       }
 
-                      // 💳 Сначала Kaspi оплата, потом поиск водителя
                       final paid = await KaspiPaymentDialog.show(
                         context,
                         amount: prices[_selected],
-                        destination: dests[_selected],
+                        destination: dest,
                         driverName: 'Qayda Taxi',
                       );
                       if (paid == true && context.mounted) {
                         context.read<RideBloc>().add(RideRequested(
-                              origin: origins[_selected],
-                              destination: dests[_selected],
+                              origin: 'пр. Достык, 105',
+                              destination: dest,
                               originPoint: AlmatyPoints.dostyk,
                               destinationPoint: AlmatyPoints.esentai,
                               tariff: tariffs[_selected],
@@ -137,69 +118,133 @@ class _RideSelectionScreenState extends State<RideSelectionScreen> {
               ),
             ]),
           ),
-          AppBottomNavBar(currentIndex: 0, onTap: (i) {
-            if (i == 0) context.go('/home');
-            if (i == 1) context.go('/history');
-            if (i == 2) context.go('/profile');
-          }),
         ]),
       ),
     );
   }
 }
 
+// ─── Top Bar с полем ввода адреса ─────────────────────────────────────────────
+
 class _TopBar extends StatelessWidget {
+  final TextEditingController destCtrl;
+  const _TopBar({required this.destCtrl});
+
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         color: context.colors.surface,
-        border: Border(
-          bottom: BorderSide(color: context.colors.outlineVariant),
-        ),
+        border: Border(bottom: BorderSide(color: context.colors.outlineVariant)),
         boxShadow: context.colors.cardShadow,
       ),
       padding: EdgeInsets.only(
         top: MediaQuery.of(context).padding.top + 4,
         left: 16, right: 16, bottom: 12,
       ),
-      child: Row(children: [
-        IconButton(
-          icon: Icon(Icons.arrow_back_rounded, color: context.colors.primary),
-          onPressed: () => context.go('/home'),
-          style: IconButton.styleFrom(
-            backgroundColor: context.colors.primaryContainer,
-            minimumSize: const Size(40, 40),
+      child: Column(mainAxisSize: MainAxisSize.min, children: [
+        Row(children: [
+          IconButton(
+            icon: Icon(Icons.arrow_back_rounded, color: context.colors.primary),
+            onPressed: () => context.go('/home'),
+            style: IconButton.styleFrom(
+              backgroundColor: context.colors.primaryContainer,
+              minimumSize: const Size(40, 40),
+            ),
           ),
-        ),
-        const SizedBox(width: 12),
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text('ride.select_title'.tr(),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text(
+              'Выбор тарифа',
               style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w800,
-                  color: context.colors.onSurface,
-                  letterSpacing: -0.3)),
-          Text('пр. Достык → Esentai Tower',
-              style: TextStyle(fontSize: 11, color: context.colors.onSurfaceVariant)),
+                fontSize: 17,
+                fontWeight: FontWeight.w800,
+                color: context.colors.onSurface,
+                letterSpacing: -0.3,
+              ),
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            decoration: BoxDecoration(
+              color: context.colors.primaryContainer,
+              borderRadius: BorderRadius.circular(9999),
+            ),
+            child: Text('~12 км',
+                style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
+                    color: context.colors.primary)),
+          ),
         ]),
-        const Spacer(),
+        const SizedBox(height: 10),
+        // ── Маршрут: откуда → поле ввода куда ─────────────────────────────
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
           decoration: BoxDecoration(
-            color: context.colors.primaryContainer,
-            borderRadius: BorderRadius.circular(9999),
+            color: context.colors.surfaceContainerLowest,
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(color: context.colors.outlineVariant),
           ),
-          child: Text('~12 км',
-              style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w700,
-                  color: context.colors.primary)),
+          child: Row(children: [
+            Column(children: [
+              Container(
+                width: 8, height: 8,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle, color: context.colors.primary),
+              ),
+              Container(
+                  width: 1, height: 20,
+                  color: context.colors.outlineVariant,
+                  margin: const EdgeInsets.symmetric(vertical: 3)),
+              Container(
+                width: 8, height: 8,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(2),
+                  color: context.colors.secondary),
+              ),
+            ]),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('пр. Достык, 105',
+                      style: TextStyle(
+                          color: context.colors.onSurfaceVariant,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500)),
+                  const SizedBox(height: 6),
+                  // ── Реальный ввод адреса назначения ───────────────────
+                  TextField(
+                    controller: destCtrl,
+                    style: TextStyle(
+                        color: context.colors.onSurface,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700),
+                    decoration: InputDecoration(
+                      hintText: 'Куда едем?',
+                      hintStyle: TextStyle(
+                          color: context.colors.onSurfaceVariant, fontSize: 14),
+                      isDense: true,
+                      contentPadding: EdgeInsets.zero,
+                      border: InputBorder.none,
+                    ),
+                    textInputAction: TextInputAction.done,
+                  ),
+                ],
+              ),
+            ),
+            Icon(Icons.edit_location_alt_rounded,
+                color: context.colors.primary, size: 18),
+          ]),
         ),
       ]),
     );
   }
 }
+
+// ─── Content Panel ────────────────────────────────────────────────────────────
 
 class _ContentPanel extends StatelessWidget {
   final int selected;
@@ -234,7 +279,6 @@ class _ContentPanel extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Handle
           Center(
             child: Container(
               width: 36, height: 4,
@@ -246,19 +290,14 @@ class _ContentPanel extends StatelessWidget {
           ),
           const SizedBox(height: 14),
 
-          // Label
-          FadeInDown(
-            child: Text('ride.select_class'.tr(),
-                style: TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: 2.0,
-                    fontFamily: 'Montserrat',
-                    color: context.colors.onSurfaceVariant)),
-          ),
+          Text('КЛАСС ПОЕЗДКИ',
+              style: TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: 2.0,
+                  color: context.colors.onSurfaceVariant)),
           const SizedBox(height: 12),
 
-          // Tariff cards
           SizedBox(
             height: 130,
             child: ListView.separated(
@@ -275,7 +314,6 @@ class _ContentPanel extends StatelessWidget {
           ),
           const SizedBox(height: 14),
 
-          // Route info
           Container(
             padding: const EdgeInsets.all(14),
             decoration: BoxDecoration(
@@ -286,8 +324,8 @@ class _ContentPanel extends StatelessWidget {
             child: Row(children: [
               Column(children: [
                 Container(width: 8, height: 8,
-                    decoration: BoxDecoration(shape: BoxShape.circle,
-                        color: context.colors.primary)),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle, color: context.colors.primary)),
                 Container(width: 1, height: 28,
                     color: context.colors.outlineVariant,
                     margin: const EdgeInsets.symmetric(vertical: 3)),
@@ -326,16 +364,13 @@ class _ContentPanel extends StatelessWidget {
                         letterSpacing: -0.5)),
                 Text(tariff.eta,
                     style: TextStyle(
-                        fontSize: 11,
-                        color: context.colors.onSurfaceVariant)),
+                        fontSize: 11, color: context.colors.onSurfaceVariant)),
               ]),
             ]),
           ),
           const SizedBox(height: 14),
 
-          // Action row
           Row(children: [
-            // Payment button
             Container(
               width: 56, height: 56,
               decoration: BoxDecoration(
@@ -358,10 +393,10 @@ class _ContentPanel extends StatelessWidget {
                     borderRadius: BorderRadius.circular(14),
                     boxShadow: context.colors.primaryGlow,
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Text(
-                      'ride.order_btn'.tr(),
-                      style: const TextStyle(
+                      'ЗАКАЗАТЬ',
+                      style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w900,
                         fontSize: 13,
@@ -385,33 +420,32 @@ class _TariffCard extends StatelessWidget {
   final int index;
   final bool isSelected;
   final VoidCallback onTap;
-  const _TariffCard({
-    required this.data,
-    required this.index,
-    required this.isSelected,
-    required this.onTap,
-  });
+  const _TariffCard(
+      {required this.data,
+      required this.index,
+      required this.isSelected,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     final icon = index == 0
-        ? Icons.local_taxi_rounded          // Economy: yellow taxi
+        ? Icons.local_taxi_rounded
         : index == 1
-            ? Icons.directions_car_rounded  // Comfort: standard car
+            ? Icons.directions_car_rounded
             : index == 2
-                ? Icons.car_rental_rounded  // Business: luxury/premium
+                ? Icons.car_rental_rounded
                 : index == 3
-                    ? Icons.airport_shuttle_rounded // Minivan
-                    : Icons.woman_rounded;  // Pink: female driver
+                    ? Icons.airport_shuttle_rounded
+                    : Icons.woman_rounded;
     final accentColor = index == 0
-        ? const Color(0xFFEAB308)           // Economy: amber
+        ? const Color(0xFFEAB308)
         : index == 1
-            ? context.colors.primary        // Comfort: brand blue/purple
+            ? context.colors.primary
             : index == 2
-                ? const Color(0xFF1E293B)   // Business: dark/black (premium)
+                ? const Color(0xFF1E293B)
                 : index == 3
-                    ? Colors.deepOrange     // Minivan: orange
-                    : const Color(0xFFFF69B4); // Pink: hot pink
+                    ? Colors.deepOrange
+                    : const Color(0xFFFF69B4);
 
     return GestureDetector(
       onTap: onTap,
@@ -429,7 +463,12 @@ class _TariffCard extends StatelessWidget {
             width: isSelected ? 2 : 1,
           ),
           boxShadow: isSelected
-              ? [BoxShadow(color: accentColor.withValues(alpha: 0.25), blurRadius: 12, spreadRadius: 1)]
+              ? [
+                  BoxShadow(
+                      color: accentColor.withValues(alpha: 0.25),
+                      blurRadius: 12,
+                      spreadRadius: 1)
+                ]
               : context.colors.cardShadow,
         ),
         child: Stack(children: [
