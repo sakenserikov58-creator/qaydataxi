@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:go_router/go_router.dart';
 import 'package:latlong2/latlong.dart';
@@ -11,9 +10,7 @@ import 'package:qayda_taxi_app/core/theme.dart';
 import 'package:qayda_taxi_app/data/services/auth_service.dart';
 import 'package:qayda_taxi_app/data/services/location_service.dart';
 import 'package:qayda_taxi_app/widgets/app_map_widget.dart';
-import 'package:qayda_taxi_app/widgets/bottom_nav_bar.dart';
 
-/// HomeScreen — Light Mode (белый фон, карточки с тенями)
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -22,18 +19,23 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-  int _navIndex = 0;
   final _mapController = MapController();
   bool _locating = false;
 
   void _animatedMapMove(LatLng destLocation, double destZoom) {
-    // Create some animations for the latlong and zoom
-    final latTween = Tween<double>(begin: _mapController.camera.center.latitude, end: destLocation.latitude);
-    final lngTween = Tween<double>(begin: _mapController.camera.center.longitude, end: destLocation.longitude);
-    final zoomTween = Tween<double>(begin: _mapController.camera.zoom, end: destZoom);
+    final latTween = Tween<double>(
+        begin: _mapController.camera.center.latitude,
+        end: destLocation.latitude);
+    final lngTween = Tween<double>(
+        begin: _mapController.camera.center.longitude,
+        end: destLocation.longitude);
+    final zoomTween = Tween<double>(
+        begin: _mapController.camera.zoom, end: destZoom);
 
-    final controller = AnimationController(duration: const Duration(milliseconds: 1000), vsync: this);
-    final animation = CurvedAnimation(parent: controller, curve: Curves.easeOutCubic);
+    final controller = AnimationController(
+        duration: const Duration(milliseconds: 1000), vsync: this);
+    final animation =
+        CurvedAnimation(parent: controller, curve: Curves.easeOutCubic);
 
     controller.addListener(() {
       _mapController.move(
@@ -43,9 +45,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     });
 
     animation.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        controller.dispose();
-      } else if (status == AnimationStatus.dismissed) {
+      if (status == AnimationStatus.completed ||
+          status == AnimationStatus.dismissed) {
         controller.dispose();
       }
     });
@@ -59,28 +60,18 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     super.dispose();
   }
 
-  void _onNavTap(int i) {
-    if (i == _navIndex) return;
-    setState(() => _navIndex = i);
-    switch (i) {
-      case 0: context.go('/home'); break;
-      case 1: context.go('/history'); break;
-      case 2: context.go('/profile'); break;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final user = context.watch<AuthService>().currentUser;
     final driverMarkers = generateNearbyDrivers();
+    final topOffset = MediaQuery.of(context).padding.top + 80;
 
     return Scaffold(
       backgroundColor: context.colors.background,
-      extendBody: true,
       body: Stack(
         fit: StackFit.expand,
         children: [
-          // ── Карта (OSM) ────────────────────────────────────────────────────
+          // ── Карта ────────────────────────────────────────────────────────
           AppMapWidget(
             center: kAlmatyCenter,
             zoom: 14,
@@ -88,40 +79,58 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             controller: _mapController,
           ),
 
-          // ── Top bar ────────────────────────────────────────────────────────
+          // ── Draggable bottom sheet ────────────────────────────────────────
+          DraggableScrollableSheet(
+            initialChildSize: 0.50,
+            minChildSize: 0.13,
+            maxChildSize: 0.92,
+            snap: true,
+            snapSizes: const [0.13, 0.50],
+            builder: (context, scrollController) {
+              return _BottomSheetContent(
+                scrollController: scrollController,
+                onOrder: () {
+                  HapticFeedback.mediumImpact();
+                  context.go('/ride-select');
+                },
+              );
+            },
+          ),
+
+          // ── Top bar ──────────────────────────────────────────────────────
           Positioned(
-            top: 0, left: 0, right: 0,
+            top: 0,
+            left: 0,
+            right: 0,
             child: _TopBar(userName: user?.name ?? 'Пользователь'),
           ),
 
-          // ── FAB: my location ────────────────────────────────────────────────
+          // ── GPS FAB ──────────────────────────────────────────────────────
           Positioned(
             right: 16,
-            bottom: 340,
+            top: topOffset,
             child: _FabButton(
-              icon: _locating ? Icons.my_location_rounded : Icons.gps_fixed_rounded,
+              icon: _locating
+                  ? Icons.my_location_rounded
+                  : Icons.gps_fixed_rounded,
               isLoading: _locating,
               onTap: () async {
                 HapticFeedback.lightImpact();
                 setState(() => _locating = true);
-                
-                // ── REAL GPS INJECTION ─────────────────────────────────────
-                final pos = await LocationService.requestAndGetPosition(context);
-                
+                final pos =
+                    await LocationService.requestAndGetPosition(context);
                 if (mounted) {
                   setState(() => _locating = false);
-                  if (pos != null) {
-                    _animatedMapMove(pos, 16);
-                  }
+                  if (pos != null) _animatedMapMove(pos, 16);
                 }
               },
             ),
           ),
 
-          // ── DEV: Switch to Driver ──────────────────────────────────────────
+          // ── DEV: Switch to Driver ────────────────────────────────────────
           Positioned(
             left: 16,
-            bottom: 340,
+            top: topOffset,
             child: _FabButton(
               icon: Icons.swap_horiz_rounded,
               bgColor: Colors.redAccent,
@@ -131,26 +140,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 await context.read<AuthService>().switchRole(UserRole.driver);
                 if (context.mounted) context.go('/splash');
               },
-            ),
-          ),
-
-          // ── Bottom sheet + nav ────────────────────────────────────────────
-          Positioned(
-            bottom: 0, left: 0, right: 0,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
-                  child: _BottomSheet(
-                    onOrder: () {
-                      HapticFeedback.mediumImpact();
-                      context.go('/ride-select');
-                    },
-                  ),
-                ),
-                AppBottomNavBar(currentIndex: _navIndex, onTap: _onNavTap),
-              ],
             ),
           ),
         ],
@@ -186,7 +175,6 @@ class _TopBar extends StatelessWidget {
             bottom: 14,
           ),
           child: Row(children: [
-            // Brand
             Container(
               width: 36,
               height: 36,
@@ -213,7 +201,6 @@ class _TopBar extends StatelessWidget {
                       fontWeight: FontWeight.w500)),
             ]),
             const Spacer(),
-            // Notifications
             Container(
               width: 40,
               height: 40,
@@ -226,7 +213,6 @@ class _TopBar extends StatelessWidget {
                   color: context.colors.onSurfaceVariant, size: 20),
             ),
             const SizedBox(width: 8),
-            // Avatar
             Container(
               width: 40,
               height: 40,
@@ -254,8 +240,8 @@ class _FabButton extends StatelessWidget {
   final Color? iconColor;
 
   const _FabButton({
-    required this.icon, 
-    required this.onTap, 
+    required this.icon,
+    required this.onTap,
     this.isLoading = false,
     this.bgColor,
     this.iconColor,
@@ -276,22 +262,26 @@ class _FabButton extends StatelessWidget {
         child: isLoading
             ? Center(
                 child: SizedBox(
-                  width: 20, height: 20,
+                  width: 20,
+                  height: 20,
                   child: CircularProgressIndicator(
                       strokeWidth: 2, color: context.colors.primary),
                 ),
               )
-            : Icon(icon, color: iconColor ?? context.colors.primary, size: 22),
+            : Icon(icon,
+                color: iconColor ?? context.colors.primary, size: 22),
       ),
     );
   }
 }
 
-// ─── Bottom Sheet ─────────────────────────────────────────────────────────────
+// ─── Bottom Sheet Content (draggable) ─────────────────────────────────────────
 
-class _BottomSheet extends StatelessWidget {
+class _BottomSheetContent extends StatelessWidget {
   final VoidCallback onOrder;
-  const _BottomSheet({required this.onOrder});
+  final ScrollController scrollController;
+  const _BottomSheetContent(
+      {required this.onOrder, required this.scrollController});
 
   @override
   Widget build(BuildContext context) {
@@ -301,115 +291,114 @@ class _BottomSheet extends StatelessWidget {
         borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
         boxShadow: context.colors.elevatedShadow,
       ),
-      padding: const EdgeInsets.fromLTRB(20, 16, 20, 0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Handle
-          Center(
-            child: Container(
-              width: 36,
-              height: 4,
-              decoration: BoxDecoration(
-                color: context.colors.outlineVariant,
-                borderRadius: BorderRadius.circular(2),
-              ),
-            ),
-          ),
-          const SizedBox(height: 16),
-
-          // Title
-          Text(
-            'Куда поедем?',
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w800,
-              letterSpacing: -0.5,
-              color: context.colors.onSurface,
-            ),
-          ),
-          const SizedBox(height: 14),
-
-          // Search field
-          _SearchField(
-            onTap: () => context.go('/ride-select'),
-          ),
-          const SizedBox(height: 12),
-
-          // Quick destinations
-          Row(children: [
-            Expanded(child: _QuickChip(
-              icon: Icons.home_rounded,
-              label: 'Домой',
-              sublabel: 'пр. Аль-Фараби, 77',
-              color: context.colors.primary,
-              onTap: () {},
-            )),
-            const SizedBox(width: 10),
-            Expanded(child: _QuickChip(
-              icon: Icons.work_rounded,
-              label: 'Работа',
-              sublabel: 'ул. Фурманова, 100',
-              color: context.colors.secondary,
-              onTap: () {},
-            )),
-          ]),
-          const SizedBox(height: 10),
-
-          // Last rides
-          _HistoryItem(
-            icon: Icons.history_rounded,
-            title: 'ТРЦ Dostyk Plaza',
-            subtitle: 'мкр. Самал-2, 111',
-            color: context.colors.tertiary,
-            onTap: () {},
-          ),
-          const SizedBox(height: 12),
-
-          // Popular destinations chips
-          SizedBox(
-            height: 36,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                _PopChip('🏔 Медеу', context.colors.tertiary, () {}),
-                const SizedBox(width: 8),
-                _PopChip('✈️ Аэропорт', context.colors.secondary, () {}),
-                const SizedBox(width: 8),
-                _PopChip('🛍 MEGA', context.colors.primary, () {}),
-                const SizedBox(width: 8),
-                _PopChip('🏥 Больница', context.colors.tertiary, () {}),
-              ],
-            ),
-          ),
-          const SizedBox(height: 14),
-
-          // CTA
-          GestureDetector(
-            onTap: onOrder,
-            child: Container(
-              width: double.infinity,
-              height: 56,
-              decoration: BoxDecoration(
-                gradient: context.colors.brandGradientH,
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: context.colors.primaryGlow,
-              ),
-              child: const Center(
-                child: Text(
-                  'Заказать поездку',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 16,
-                    letterSpacing: -0.2,
+      child: SingleChildScrollView(
+        controller: scrollController,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Drag handle
+              Center(
+                child: Container(
+                  width: 36,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: context.colors.outlineVariant,
+                    borderRadius: BorderRadius.circular(2),
                   ),
                 ),
               ),
-            ),
+              const SizedBox(height: 16),
+
+              Text(
+                'Куда поедем?',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: -0.5,
+                  color: context.colors.onSurface,
+                ),
+              ),
+              const SizedBox(height: 14),
+
+              _SearchField(onTap: () => context.go('/ride-select')),
+              const SizedBox(height: 12),
+
+              Row(children: [
+                Expanded(
+                    child: _QuickChip(
+                  icon: Icons.home_rounded,
+                  label: 'Домой',
+                  sublabel: 'пр. Аль-Фараби, 77',
+                  color: context.colors.primary,
+                  onTap: () {},
+                )),
+                const SizedBox(width: 10),
+                Expanded(
+                    child: _QuickChip(
+                  icon: Icons.work_rounded,
+                  label: 'Работа',
+                  sublabel: 'ул. Фурманова, 100',
+                  color: context.colors.secondary,
+                  onTap: () {},
+                )),
+              ]),
+              const SizedBox(height: 10),
+
+              _HistoryItem(
+                icon: Icons.history_rounded,
+                title: 'ТРЦ Dostyk Plaza',
+                subtitle: 'мкр. Самал-2, 111',
+                color: context.colors.tertiary,
+                onTap: () {},
+              ),
+              const SizedBox(height: 12),
+
+              SizedBox(
+                height: 36,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    _PopChip('🏔 Медеу', context.colors.tertiary, () {}),
+                    const SizedBox(width: 8),
+                    _PopChip('✈️ Аэропорт', context.colors.secondary, () {}),
+                    const SizedBox(width: 8),
+                    _PopChip('🛍 MEGA', context.colors.primary, () {}),
+                    const SizedBox(width: 8),
+                    _PopChip('🏥 Больница', context.colors.tertiary, () {}),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 14),
+
+              GestureDetector(
+                onTap: onOrder,
+                child: Container(
+                  width: double.infinity,
+                  height: 56,
+                  decoration: BoxDecoration(
+                    gradient: context.colors.brandGradientH,
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: context.colors.primaryGlow,
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Заказать поездку',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 16,
+                        letterSpacing: -0.2,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 8),
+            ],
           ),
-          const SizedBox(height: 8),
-        ],
+        ),
       ),
     );
   }
@@ -421,8 +410,9 @@ class _SearchField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
+      borderRadius: BorderRadius.circular(14),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         decoration: BoxDecoration(
@@ -453,8 +443,12 @@ class _QuickChip extends StatelessWidget {
   final String sublabel;
   final Color color;
   final VoidCallback onTap;
-  const _QuickChip({required this.icon, required this.label,
-      required this.sublabel, required this.color, required this.onTap});
+  const _QuickChip(
+      {required this.icon,
+      required this.label,
+      required this.sublabel,
+      required this.color,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -507,8 +501,12 @@ class _HistoryItem extends StatelessWidget {
   final String subtitle;
   final Color color;
   final VoidCallback onTap;
-  const _HistoryItem({required this.icon, required this.title,
-      required this.subtitle, required this.color, required this.onTap});
+  const _HistoryItem(
+      {required this.icon,
+      required this.title,
+      required this.subtitle,
+      required this.color,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {

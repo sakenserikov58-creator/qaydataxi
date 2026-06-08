@@ -72,12 +72,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ? TextField(
                         controller: _nameCtrl,
                         autofocus: true,
-                        style: const TextStyle(
+                        style: TextStyle(
                             fontSize: 34,
                             fontWeight: FontWeight.w900,
                             letterSpacing: -1.2,
                             height: 1.05,
-                            color: Colors.white),
+                            color: context.colors.onSurface),
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Ваше имя',
@@ -89,8 +89,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       )
                     : Text(
                         user?.name ?? 'Пользователь',
-                        style: const TextStyle(
-                            color: Colors.white,
+                        style: TextStyle(
+                            color: context.colors.onSurface,
                             fontSize: 38,
                             fontWeight: FontWeight.w900,
                             letterSpacing: -1.5,
@@ -331,8 +331,8 @@ class _BentoCard extends StatelessWidget {
               ]),
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Text(title,
-                    style: const TextStyle(
-                        color: Colors.white,
+                    style: TextStyle(
+                        color: context.colors.onSurface,
                         fontWeight: FontWeight.w700,
                         fontSize: 15)),
                 Text(subtitle,
@@ -385,8 +385,8 @@ class _ListItem extends StatelessWidget {
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(title,
-                  style: const TextStyle(
-                      color: Colors.white,
+                  style: TextStyle(
+                      color: context.colors.onSurface,
                       fontWeight: FontWeight.w600,
                       fontSize: 14)),
               Text(subtitle,
